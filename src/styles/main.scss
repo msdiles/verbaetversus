@@ -125,3 +125,15 @@
 .helper-text.invalid {
   color: #f44336;
 }
+
+.auth-card {
+  width: 500px;
+  @include for-phone-only{
+    width:90%;
+    min-width: 300px;
+  }
+}
+
+.auth-button {
+  width: 100%;
+}

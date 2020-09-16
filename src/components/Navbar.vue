@@ -9,16 +9,22 @@
             href="#"
             data-target="dropdown1"
             ref="dropdown"
-            >Dropdown
-            <i class="material-icons right" @click="console.log('click')"
+          >
+            <i
+              class="material-icons right "
+              style="font-size:1.5rem;margin-left:0;"
               >arrow_drop_down</i
+            ><i
+              class="medium material-icons right "
+              style="font-size:2.5rem;"
+              >account_circle</i
             >
           </a>
+
           <ul id="dropdown1" class="dropdown-content">
-            <li><a href="#">one</a></li>
-            <li><a href="#">two</a></li>
+            <li><router-link to="/login">Login</router-link></li>
             <li class="divider"></li>
-            <li><a href="#">three</a></li>
+            <li><router-link to="/register">Register</router-link></li>
           </ul>
         </li>
       </ul>
@@ -55,7 +61,22 @@ export default {
   height: 64px;
 
   z-index: 1000;
-
+  #dropdown1 {
+    position: absolute;
+    top: -55px;
+    overflow: visible;
+    &:before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      right: 15%;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid white;
+    }
+  }
   @include for-phone-only {
     left: 0;
     width: 100%;
@@ -66,6 +87,9 @@ export default {
     }
     .brand-logo {
       z-index: 1;
+    }
+    #dropdown1 {
+      top: -50px;
     }
   }
 

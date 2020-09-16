@@ -14,7 +14,19 @@ const routes = [
     path: "/register",
     name: "register",
     meta: { layout: "auth" },
-    component: () => import("@/views/Register"),
+    component: () => import("@/views/SignUp"),
+  },
+  {
+    path: "/reset",
+    name: "reset-link",
+    meta: { layout: "auth" },
+    component: () => import("@/views/ResetSendLink"),
+  },
+  {
+    path: "/reset/:id",
+    name: "reset-password",
+    meta: { layout: "auth" },
+    component: () => import("@/views/ResetPassword"),
   },
   {
     path: "/",
@@ -52,7 +64,6 @@ const routes = [
     meta: { layout: "main" },
     component: () => import("@/views/Test"),
   },
-
 ]
 
 const router = new VueRouter({
