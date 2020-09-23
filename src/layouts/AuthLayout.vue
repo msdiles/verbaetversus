@@ -10,7 +10,12 @@
 </template>
 
 <script>
-export default {}
+import errorHandlerMixin from "../mixins/error.mixin"
+import store from "../store"
+
+export default {
+  mixins:[errorHandlerMixin],
+}
 </script>
 
 <style lang="scss" scoped>

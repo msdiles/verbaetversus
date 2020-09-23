@@ -133,7 +133,6 @@ export default {
         this.$v.$touch()
         return
       }
-      console.log("RESET")
     },
   },
 }

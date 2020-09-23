@@ -30,7 +30,6 @@ export default {
       e.target.style.zIndex = "2"
     },
     blurHandler(e) {
-      console.log(e.target)
       e.target.style.opacity = 0
       e.target.style.zIndex = "-2"
       this.$refs.search.classList.remove("active")

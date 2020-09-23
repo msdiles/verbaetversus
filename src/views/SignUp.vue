@@ -1,5 +1,12 @@
 <template>
   <form class="card auth-card" @submit.prevent="handleSubmit">
+    <div
+      class="progress  blue lighten-4"
+      style="margin:0;"
+      :style="{ visibility: loading ? 'visible' : 'hidden' }"
+    >
+      <div class="indeterminate blue"></div>
+    </div>
     <div class="card-content">
       <span class="card-title center">Sign Up</span>
       <hr />
@@ -45,7 +52,8 @@
             invalid:
               ($v.email.$dirty && !$v.email.required) ||
               ($v.email.$dirty && !$v.email.email) ||
-              ($v.email.$dirty && !$v.email.maxLength),
+              ($v.email.$dirty && !$v.email.maxLength) ||
+              isUserExist,
           }"
         /><label label for="email">Email</label>
         <small
@@ -58,11 +66,14 @@
           v-else-if="$v.email.$dirty && !$v.email.email"
           >Invalid email format
         </small>
-         <small
+        <small
           class="helper-text invalid"
           v-else-if="$v.email.$dirty && !$v.email.maxLength"
           >Your email can't be longer than
           {{ $v.email.$params.maxLength.max }} characters
+        </small>
+        <small class="helper-text invalid" v-else-if="isUserExist"
+          >User with this email already exists
         </small>
       </div>
 
@@ -113,7 +124,7 @@
           v-else-if="$v.password.$dirty && !$v.password.mustNotHaveSpecial"
           >Password mustn't have any special characters</small
         >
-         <small
+        <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.maxLength"
           >Your password can't be longer than
@@ -124,14 +135,14 @@
       <div class="input-field">
         <input
           type="password"
-          id="password"
+          id="passwordRepeat"
           v-model="passwordRepeat"
           :class="{
             invalid:
               ($v.passwordRepeat.$dirty && !$v.passwordRepeat.required) ||
               ($v.passwordRepeat.$dirty && !$v.passwordRepeat.sameAsPassword),
           }"
-        /><label label for="password">Confirm Password</label>
+        /><label label for="passwordRepeat">Confirm Password</label>
         <small
           class="helper-text invalid"
           v-if="$v.passwordRepeat.$dirty && !$v.passwordRepeat.required"
@@ -146,12 +157,12 @@
         </small>
       </div>
     </div>
-    
     <div class="card-action">
       <div>
         <button
           type="submit"
-          class="btn waves-effect waves-light auth-button blue"
+          class="btn waves-effect waves-light auth-button blue "
+          :class="{ disabled: loading }"
         >
           Sign Up
         </button>
@@ -160,13 +171,27 @@
         Already have an account?<router-link to="login"> Sign In</router-link>
       </small>
     </div>
+    <div id="modal1" class="modal" ref="modal">
+      <div class="modal-content">
+        <h4 class="center">Registration completed successfully</h4>
+      </div>
+      <div class="modal-footer" style="text-align:center">
+        <router-link to="/" class="modal-close waves-effect waves-light btn"
+          >Go To Home Page</router-link
+        >
+        <router-link
+          to="/login"
+          class="modal-close waves-effect waves-light btn"
+          >Go To Login Page</router-link
+        >
+      </div>
+    </div>
   </form>
 </template>
 
 <script>
 import {
   email,
-
   required,
   minLength,
   sameAs,
@@ -184,6 +209,9 @@ export default {
     email: "",
     password: "",
     passwordRepeat: "",
+    isUserExist: false,
+    loading: false,
+    isModalOpen: false,
   }),
   validations: {
     login: { required, minLength: minLength(6), maxLength: maxLength(128) },
@@ -199,22 +227,70 @@ export default {
     },
     passwordRepeat: { sameAsPassword: sameAs("password"), required },
   },
-  methods: {
-    handleSubmit() {
-      if (this.$v.$invalid) {
-        this.$v.$touch()
-        return
-      }
-      console.log("SUBMIT")
+  mounted() {
+    M.Modal.init(this.$refs.modal, {
+      dismissible: false,
+      endingTop: "45%",
+    })
+  },
+  watch: {
+    isModalOpen() {
+      M.Modal.getInstance(this.$refs.modal).open()
     },
+  },
+  methods: {
+    async checkIsUserExist() {
+      try {
+        this.loading = true
+        const data = { email: this.email }
+        this.isUserExist = await this.$store.dispatch("checkEmail", data)
+      } catch (e) {
+      } finally {
+        this.loading = false
+      }
+    },
+    async handleSubmit() {
+      try {
+        if (this.$v.$invalid) {
+          this.$v.$touch()
+          return
+        }
+        await this.checkIsUserExist()
+
+        if (this.isUserExist || this.isUserExist === undefined) return
+
+        const data = {
+          email: this.email,
+          password: this.password,
+          login: this.login,
+        }
+        this.loading = true
+        const success = await this.$store.dispatch("signUp", data)
+        this.isModalOpen = !!success ? true : false
+      } catch (e) {
+      } finally {
+        this.loading = false
+      }
+    },
+  },
+  beforeDestroy() {
+    if (this.$refs.modal && this.$refs.modal.destroy) this.$refs.modal.destroy()
   },
 }
 </script>
 
 <style lang="scss" scoped>
+@import "../styles/mixins.scss";
+
 .card-action small {
   display: block;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
+}
+
+@include for-phone-only {
+  #modal1 {
+    height: 280px;
+  }
 }
 </style>

@@ -11,7 +11,15 @@
 <script>
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"
+import errorHandlerMixin from "../mixins/error.mixin"
+import messages from "../utils/messages"
+
 export default {
+  mixins: [errorHandlerMixin],
+  mounted() {
+    if (messages[this.$route.query.message])
+      this.$message(messages[this.$route.query.message])
+  },
   components: {
     Navbar,
     Footer,

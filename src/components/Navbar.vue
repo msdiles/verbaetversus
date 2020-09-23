@@ -2,6 +2,7 @@
   <nav class="navbar  blue-grey darken-1">
     <div class="nav-wrapper">
       <router-link to="/" class="brand-logo left">Logo</router-link>
+
       <ul class="right">
         <li>
           <a
@@ -14,33 +15,58 @@
               class="material-icons right "
               style="font-size:1.5rem;margin-left:0;"
               >arrow_drop_down</i
-            ><i
-              class="medium material-icons right "
-              style="font-size:2.5rem;"
+            ><i class="medium material-icons right " style="font-size:2.5rem;"
               >account_circle</i
             >
           </a>
 
-          <ul id="dropdown1" class="dropdown-content">
+          <ul
+            v-if="auth.isUserLoggedIn"
+            id="dropdown1"
+            class="dropdown-content"
+          >
+            <li v-if="auth.isUserLoggedIn" class="divider"></li>
+            <li><router-link to="/profile">Profile</router-link></li>
+            <li class="divider"></li>
+            <li><a href="#" @click.prevent="logout">Logout</a></li>
+          </ul>
+
+          <ul v-else id="dropdown1" class="dropdown-content">
             <li><router-link to="/login">Login</router-link></li>
             <li class="divider"></li>
-            <li><router-link to="/register">Register</router-link></li>
+            <li>
+              <router-link to="/register">Register</router-link>
+            </li>
           </ul>
         </li>
       </ul>
+
       <NavbarSearch />
     </div>
   </nav>
 </template>
 
 <script>
+// Add error component
 import NavbarSearch from "@/components/NavbarSearch"
+import { mapState } from "vuex"
 export default {
   data: () => ({ dropdown: null }),
   mounted() {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {})
   },
-
+  computed: {
+    ...mapState(["auth"]),
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$store.dispatch("logOut")
+        this.$message("You Have Been Successfully Logged Out")
+        this.$router.push("/")
+      } catch (e) {}
+    },
+  },
   destroyed() {
     if (this.dropdown && this.dropdown.destroy) {
       this.dropdown.destroy()
