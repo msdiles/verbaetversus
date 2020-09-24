@@ -1,5 +1,6 @@
 <template>
-  <form class="card auth-card" @submit.prevent="handleSubmit">
+  <LoaderPage v-if="isLoading || isLogged" />
+  <form v-else class="card auth-card" @submit.prevent="handleSubmit">
     <div
       class="progress  blue lighten-4"
       style="margin:0;"
@@ -190,6 +191,7 @@
 </template>
 
 <script>
+import unAuth from "@/mixins/unAuth.mixin.js"
 import {
   email,
   required,
@@ -204,6 +206,7 @@ import {
   mustHaveUppercase,
 } from "@/utils/validators"
 export default {
+  mixins: [unAuth],
   data: () => ({
     login: "",
     email: "",
@@ -230,7 +233,7 @@ export default {
   mounted() {
     M.Modal.init(this.$refs.modal, {
       dismissible: false,
-      endingTop: "45%",
+      endingTop: "35%",
     })
   },
   watch: {

@@ -9,7 +9,7 @@ export default {
   },
   watch: {
     error(error) {
-      this  .$error(error.message || "ASDASDASDASDA")
+      this  .$error(error.message || "Something go wrong")
     },
   },
 }

@@ -1,7 +1,8 @@
 import Vue from "vue"
 import Vuex from "vuex"
 import auth from "./auth"
-
+import words from "./words"
+import reset from "./resetPassword"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -18,5 +19,5 @@ export default new Vuex.Store({
   },
   actions: {},
   getters: {},
-  modules: { auth },
+  modules: { auth,words,reset },
 })

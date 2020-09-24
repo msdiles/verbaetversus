@@ -4,21 +4,25 @@ import App from "@/App"
 import router from "@/router"
 import store from "@/store"
 
-import messagePlugin from "./plugins/message.plugin"
-import fetchPlugin from "./plugins/fetch.plugin"
+import messagePlugin from "@/plugins/message.plugin"
+import fetchPlugin from "@/plugins/fetch.plugin"
 
-import customFetch from "./utils/customFetch"
-import Loader from "./components/Loader.vue"
+import customFetch from "@/utils/customFetch"
+import Loader from "@/components/Loader.vue"
+import LoaderPage from "@/components/LoaderPage.vue"
 
 import "materialize-css/dist/js/materialize.min"
 import "@/styles/main.scss"
 
-customFetch({ url: "http://localhost:3000" })
+  customFetch({ url: "http://localhost:3000" })
 Vue.use(fetchPlugin, { url: "http://localhost:3000" })
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 
 Vue.component("Loader", Loader)
+Vue.component("LoaderPage", LoaderPage)
+
+
 ;(async () => {
   await store.dispatch("refreshOnLoad")
 

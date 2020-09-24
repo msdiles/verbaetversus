@@ -3,7 +3,7 @@ import VueRouter from "vue-router"
 import store from "../store/index"
 
 Vue.use(VueRouter)
-
+//TODO add error page
 const routes = [
   {
     path: "/login",
@@ -24,7 +24,7 @@ const routes = [
     component: () => import("@/views/ResetSendLink"),
   },
   {
-    path: "/reset/:id",
+    path: "/reset/:date/:id",
     name: "reset-password",
     meta: { layout: "auth", requiresAuth: false, requiresUnAuth: true },
     component: () => import("@/views/ResetPassword"),

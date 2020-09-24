@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <LoaderPage v-if="$route.meta.layout === undefined" />
+  <div v-else>
     <component :is="layout"></component>
   </div>
 </template>

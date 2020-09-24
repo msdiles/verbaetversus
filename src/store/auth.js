@@ -1,5 +1,7 @@
 import router from "../router"
 
+import getFingerprint from "@/utils/fingerprint"
+
 export default {
   state: {
     user: null,
@@ -69,12 +71,14 @@ export default {
     },
     async signIn({ commit }, data) {
       try {
+        const fingerprint = await getFingerprint()
+        const fetchData = { ...data, fingerprint }
         const response = await _fetch("/auth/signin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify(fetchData),
         })
         if (response.status === 401 || response.status === 422)
           throw new Error("Invalid password or email")
@@ -110,7 +114,8 @@ export default {
       try {
         commit("setLoading")
         const token = localStorage.getItem("session")
-        const data = { token, fingerprint: "ASDASDADADASDA" }
+        const fingerprint = await getFingerprint()
+        const data = { token, fingerprint: fingerprint }
         const response = await _fetch("/auth/refresh", {
           method: "POST",
           headers: {

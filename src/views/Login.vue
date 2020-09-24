@@ -1,10 +1,13 @@
 <template>
-  <form class="card auth-card" @submit.prevent="handleSubmit">
+  <LoaderPage v-if="isLoading || isLogged" />
+  <form v-else class="card auth-card" @submit.prevent="handleSubmit">
     <div
       class="progress  blue lighten-4"
       style="margin:0;"
       :style="{ visibility: loading ? 'visible' : 'hidden' }"
-    ></div>
+    >
+      <div class="indeterminate blue"></div>
+    </div>
     <div class="card-content">
       <span class="card-title center">Sign In</span>
       <hr />
@@ -83,7 +86,9 @@
 
 <script>
 import { required } from "vuelidate/lib/validators"
+import unAuth from "@/mixins/unAuth.mixin.js"
 export default {
+  mixins:[unAuth],
   data: () => ({
     email: "",
     password: "",
@@ -100,13 +105,11 @@ export default {
         this.$v.$touch()
         return
       }
-      //TODO FNGERPRINT
       try {
         this.loading = true
         const data = {
           email: this.email,
           password: this.password,
-          fingerprint: "ASDASDADADASDA",
         }
 
         await this.$store.dispatch("signIn", data)

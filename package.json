@@ -1,6 +1,6 @@
 {
   "name": "verbaetversus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -42,6 +42,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@fingerprintjs/fingerprintjs": "^2.1.4",
     "dotenv": "^8.2.0",
     "materialize-css": "^1.0.0",
     "sass": "^1.26.10",
