@@ -3,7 +3,6 @@ import VueRouter from "vue-router"
 import store from "../store/index"
 
 Vue.use(VueRouter)
-//TODO add error page
 const routes = [
   {
     path: "/login",
@@ -71,6 +70,18 @@ const routes = [
     meta: { layout: "main", requiresAuth: true, requiresUnAuth: false },
     component: () => import("@/views/Profile"),
   },
+  {
+    path: "/word/:word",
+    name: "word",
+    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
+    component: () => import("@/views/Word"),
+  },
+  {
+    path: "*",
+    name: "error",
+    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
+    component: () => import("@/views/Error"),
+  }
 ]
 
 const router = new VueRouter({

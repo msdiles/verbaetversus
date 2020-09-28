@@ -40,8 +40,9 @@
           </ul>
         </li>
       </ul>
-
       <NavbarSearch />
+
+
     </div>
   </nav>
 </template>
@@ -50,13 +51,17 @@
 // Add error component
 import NavbarSearch from "@/components/NavbarSearch"
 import { mapState } from "vuex"
+
 export default {
-  data: () => ({ dropdown: null }),
+  data: () => ({ dropdown: null, foundWords: [] }),
   mounted() {
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {})
   },
   computed: {
     ...mapState(["auth"]),
+  },
+  watch: {
+
   },
   methods: {
     async logout() {
@@ -141,4 +146,6 @@ export default {
   position: relative;
   height: 100%;
 }
+
+
 </style>

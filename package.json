@@ -1,6 +1,6 @@
 {
   "name": "verbaetversus",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -45,6 +45,7 @@
     "@fingerprintjs/fingerprintjs": "^2.1.4",
     "dotenv": "^8.2.0",
     "materialize-css": "^1.0.0",
+    "rxjs": "^6.6.3",
     "sass": "^1.26.10",
     "uuid": "^8.3.0",
     "vue": "^2.6.12",

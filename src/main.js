@@ -14,7 +14,7 @@ import LoaderPage from "@/components/LoaderPage.vue"
 import "materialize-css/dist/js/materialize.min"
 import "@/styles/main.scss"
 
-  customFetch({ url: "http://localhost:3000" })
+customFetch({ url: "http://localhost:3000" })
 Vue.use(fetchPlugin, { url: "http://localhost:3000" })
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)
