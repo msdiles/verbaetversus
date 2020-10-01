@@ -39,7 +39,11 @@
         </router-link>
       </div>
       <div class="grid-element ">
-        <router-link to="/add" tag="div" class="card-panel home-card-third">
+        <router-link
+          to="/words/add"
+          tag="div"
+          class="card-panel home-card-third"
+        >
           <div class="center">
             <p>Add word</p>
             <i class="material-icons">add</i>
@@ -47,8 +51,15 @@
         >
       </div>
       <div class="grid-element">
-        <router-link to="/quotes" tag="div" class="card-panel  home-card-third">
-          <div class="center"><p>asdd</p></div></router-link
+        <router-link
+          to="/quotes/add"
+          tag="div"
+          class="card-panel  home-card-third"
+        >
+          <div class="center">
+            <p>Add quote</p>
+            <i class="material-icons">format_quote</i>
+          </div></router-link
         >
       </div>
     </div>

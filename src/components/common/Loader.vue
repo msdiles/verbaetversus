@@ -24,6 +24,6 @@ export default {}
 .app-loader {
   width: 100%;
   justify-content: center;
-  padding-top: 2rem;
+  padding: 2rem;
 }
 </style>

@@ -35,15 +35,33 @@ const routes = [
     component: () => import("@/views/Home"),
   },
   {
-    path: "/add",
-    name: "add",
+    path: "/words/add",
+    name: "addWord",
+    meta: { layout: "main", requiresAuth: true, requiresUnAuth: false },
+    component: () => import("@/views/AddWord"),
+  },
+  {
+    path: "/word/:word",
+    name: "word",
     meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
-    component: () => import("@/views/Add"),
+    component: () => import("@/views/Word"),
+  },
+  {
+    path: "/quotes/add",
+    name: "addQuote",
+    meta: { layout: "main", requiresAuth: true, requiresUnAuth: false },
+    component: () => import("@/views/AddQuote"),
+  },
+  {
+    path: "/quote/:quote",
+    name: "quote",
+    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
+    component: () => import("@/views/Quote"),
   },
   {
     path: "/inspiration",
     name: "inspiration",
-    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
+    meta: { layout: "main", requiresAuth: true, requiresUnAuth: false },
     component: () => import("@/views/Inspiration"),
   },
   {
@@ -71,12 +89,6 @@ const routes = [
     component: () => import("@/views/Profile"),
   },
   {
-    path: "/word/:word",
-    name: "word",
-    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
-    component: () => import("@/views/Word"),
-  },
-  {
     path: "*",
     name: "error",
     meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
@@ -91,7 +103,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const s = store.state
   const isLogged = store.state.auth.isUserLoggedIn
   const isLoading = store.state.auth.loading
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth)

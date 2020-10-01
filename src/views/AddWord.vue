@@ -83,6 +83,8 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/styles/mixins";
+
+
 .remove-button {
   color: red;
   border: 2px solid red;

@@ -110,7 +110,13 @@ export default {
         throw e
       }
     },
-    async refreshTokens({ dispatch, commit }) {
+    async refreshTokens(
+      { dispatch, commit },
+      { action: action, actionData: actionData } = {
+        action: "",
+        actionData: null,
+      }
+    ) {
       try {
         commit("setLoading")
         const token = localStorage.getItem("session")
@@ -131,6 +137,9 @@ export default {
           const { user, refreshToken, accessToken } = await response.json()
           commit("setTokens", { accessToken, refreshToken })
           commit("setUserInfo", user)
+          if (action && actionData) {
+           return  dispatch(action, actionData)
+          }
         }
       } catch (e) {
         commit("setError", e)
