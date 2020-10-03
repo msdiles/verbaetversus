@@ -63,7 +63,7 @@ main {
 
 .app-page {
   @include for-phone-only {
-    padding: 0 2rem 0;
+    padding: 0 1rem 0;
   }
 
   @include for-tablet-portrait-up {

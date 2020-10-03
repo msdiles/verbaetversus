@@ -7,7 +7,7 @@
     </div>
     <div class="grid-container">
       <div class="grid-element">
-        <router-link to="/quotes" tag="div" class="card-panel home-card-full">
+        <router-link to="/quotes/list" tag="div" class="card-panel home-card-full">
           <div class="center"><p>List of quotes</p></div></router-link
         >
       </div>

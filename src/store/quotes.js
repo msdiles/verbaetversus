@@ -1,6 +1,15 @@
 export default {
-  state: {},
-  mutations: {},
+  state: {
+    list: null,
+  },
+  mutations: {
+    setQuotesList(state, list) {
+      state.list = list
+    },
+    clearQuotesList(state) {
+      state.List = null
+    },
+  },
   actions: {
     async addQuote({ rootState, dispatch, commit }, data) {
       try {
@@ -31,7 +40,7 @@ export default {
     },
     async searchQuotes({ commit }, data) {
       try {
-        const response = await _fetch("/quotes/search?quote=" + data, {
+        const response = await _fetch("/quotes/search" + data, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -39,7 +48,7 @@ export default {
         })
         if (response.status > 200) throw new Error()
         const res = await response.json()
-        if (res.success === false) return true
+        commit("setQuotesList", res.result)
         return res
       } catch (e) {
         commit("setError", e)
@@ -64,33 +73,33 @@ export default {
       }
     },
     async updateQuote({ rootState, dispatch, commit }, data) {
-     try {
-      const token = rootState.auth.accessToken
-      if (token) {
-        const response = await _fetch("/quotes/update", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "bearer " + token,
-          },
-          body: JSON.stringify(data),
-        })
-        if (response.status === 200) return await response.json()
-        if (response.status === 401) {
-          const res = await dispatch("refreshTokens", {
-            action: "updateQuote",
-            actionData: data,
+      try {
+        const token = rootState.auth.accessToken
+        if (token) {
+          const response = await _fetch("/quotes/update", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "bearer " + token,
+            },
+            body: JSON.stringify(data),
           })
-          if (res) return res
+          if (response.status === 200) return await response.json()
+          if (response.status === 401) {
+            const res = await dispatch("refreshTokens", {
+              action: "updateQuote",
+              actionData: data,
+            })
+            if (res) return res
+          }
+          throw new Error()
         }
-        throw new Error()
+      } catch (e) {
+        commit("setError", e)
+        throw e
       }
-     } catch (e) {
-      commit("setError", e)
-      throw e
-     }
     },
-    async deleteQuote({ rootState, dispatch, commit}, data) {
+    async deleteQuote({ rootState, dispatch, commit }, data) {
       try {
         const token = rootState.auth.accessToken
         if (token) {

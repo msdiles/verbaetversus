@@ -47,6 +47,12 @@ const routes = [
     component: () => import("@/views/Word"),
   },
   {
+    path: "/quotes/list",
+    name: "quotesList",
+    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
+    component: () => import("@/views/List"),
+  },
+  {
     path: "/quotes/add",
     name: "addQuote",
     meta: { layout: "main", requiresAuth: true, requiresUnAuth: false },
