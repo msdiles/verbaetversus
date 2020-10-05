@@ -44,7 +44,7 @@
             <div class="chip" style="background:none">Tags:</div>
             <router-link
               tag="div"
-              :to="`/quotes/?tag=${tag}`"
+              :to="`/quotes/list?tag=${tag}`"
               v-for="tag in propQuoteCard.tags"
               class="chip"
               :key="tag"
@@ -62,6 +62,22 @@
               >. {{ propQuoteCard.date | date("date") }}
             </p>
           </div>
+          <div
+            v-if="propUser"
+            class="col s12 m4 offset-s5 offset-m6 added-info add-to-favorite"
+          >
+            <i :key="propQuoteCard.favorite.indexOf(propUser.id) !== -1"
+              class="material-icons"
+              :class="{
+                added: propQuoteCard.favorite.indexOf(propUser.id) !== -1,
+              }"
+              @click="favoriteHandler"
+              v-tooltip=" this.propQuoteCard.favorite.indexOf(this.propUser.id) > -1
+          ? 'Remove from favorite'
+          : 'Add to favorite'"
+              >favorite
+            </i>
+          </div>
         </div>
       </form>
     </div>
@@ -69,16 +85,24 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
+
 export default {
   props: {
     propQuoteCard: Object,
+    propUser: Object,
   },
-  mounted(){
-    this.$nextTick(()=>{
+  mounted() {
+    this.$nextTick(() => {
       M.updateTextFields()
-      M.textareaAutoResize(this.$refs.textarea);
+      M.textareaAutoResize(this.$refs.textarea)
     })
-  }
+  },
+  methods: {
+    favoriteHandler() {
+      this.$emit("toggleToFavorite")
+    },
+  },
 }
 </script>
 
@@ -150,9 +174,22 @@ textarea {
   }
 }
 
+.add-to-favorite {
+  .added {
+    color: red;
+  }
+  opacity: 0.7;
+  i:hover {
+    opacity: 1;
+    transition: 0.2s;
+    color: red;
+    cursor: pointer;
+  }
+}
+
 @include for-phone-only {
-   textarea{
-     padding: 1rem 2rem;
-   }
+  textarea {
+    padding: 1rem 2rem;
+  }
 }
 </style>

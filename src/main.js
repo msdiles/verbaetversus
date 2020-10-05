@@ -12,6 +12,9 @@ import Loader from "@/components/common/Loader.vue"
 import LoaderPage from "@/components/common/LoaderPage.vue"
 
 import DateFilter from "@/filters/date.filter.js"
+import UppercaseFilter from "@/filters/uppercase.filter.js"
+
+import tooltipDirective from "@/directives/tooltip.directive.js"
 
 import "materialize-css/dist/js/materialize.min"
 import "@/styles/main.scss"
@@ -21,12 +24,13 @@ Vue.use(fetchPlugin, { url: "http://localhost:3000" })
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 
-Vue.filter("date",DateFilter)
+Vue.filter("date", DateFilter)
+Vue.filter("upper", UppercaseFilter)
+
+Vue.directive("tooltip", tooltipDirective)
 
 Vue.component("Loader", Loader)
 Vue.component("LoaderPage", LoaderPage)
-
-
 ;(async () => {
   await store.dispatch("refreshOnLoad")
 
@@ -36,6 +40,9 @@ Vue.component("LoaderPage", LoaderPage)
     render: (h) => h(App),
   }).$mount("#app")
 })()
-  //TODO ADD ANIMATION
-  //TODO add color to props
-  //TODO rework word state and word components
+//TODO ADD ANIMATION
+//TODO add color to props
+//TODO FIX profile refresh
+//TODO pagination
+//TODO add likes and favorite
+//TODO words message when word isExist

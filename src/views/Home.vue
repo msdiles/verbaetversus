@@ -7,9 +7,23 @@
     </div>
     <div class="grid-container">
       <div class="grid-element">
-        <router-link to="/quotes/list" tag="div" class="card-panel home-card-full">
-          <div class="center"><p>List of quotes</p></div></router-link
-        >
+        <div class="card-panel home-card-full">
+          <div class="center collection">
+            <a class="collection-item ">List of quotes</a>
+            <TextLoading v-if="loading" :propLinesNumber="20" />
+            <router-link
+              :to="`/quote/${quote.url}`"
+              class="collection-item quote truncate "
+              v-for="quote in quotes.list"
+              :key="quote._id"
+              >{{ quote.quote }}</router-link
+            >
+
+            <router-link to="/quotes/list" tag="a" class=" collection-item "
+              >Search more quotes</router-link
+            >
+          </div>
+        </div>
       </div>
       <div class="grid-element">
         <router-link
@@ -35,7 +49,10 @@
           tag="div"
           class="card-panel home-card-third"
         >
-          <div class="center"><p>Inspiration</p></div>
+          <div class="center">
+            <p>Inspiration</p>
+            <i class="material-icons"> create </i>
+          </div>
         </router-link>
       </div>
       <div class="grid-element ">
@@ -67,7 +84,27 @@
 </template>
 
 <script>
-export default {}
+import TextLoading from "@/components/common/TextLoading"
+import { mapState } from "vuex"
+export default {
+  data: () => ({ loading: false }),
+  computed: {
+    ...mapState(["quotes"]),
+  },
+  async mounted() {
+    try {
+      this.loading = true
+      const data = "?number=8"
+      await this.$store.dispatch("searchQuotes", data)
+    } catch (e) {
+    } finally {
+      this.loading = false
+    }
+  },
+  components: {
+    TextLoading,
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -84,6 +121,11 @@ export default {}
 
 .grid-container .grid-element {
   padding: 0 1rem;
+
+  & .card-panel:hover {
+    background-color: #ddd;
+    transition: 0.2s;
+  }
 }
 
 .grid-container .grid-element:nth-child(1) {
@@ -108,6 +150,32 @@ export default {}
 .home-card-full {
   cursor: pointer;
   height: 33rem;
+  padding: 0;
+  .collection {
+    height: 100%;
+    .collection-item {
+      height: 10%;
+    }
+    .quote {
+      font-family: "Caveat", cursive;
+      font-size: 1.3rem;
+      color: black;
+    }
+
+    a:nth-child(1) {
+      color: black;
+      &:hover {
+        background-color: #ffffff;
+        cursor: auto;
+      }
+    }
+    a:last-child {
+      color: black;
+      border-top: 1px solid #e0e0e0;
+      min-height: 15%;
+      text-align: center;
+    }
+  }
 }
 
 .home-card-third {

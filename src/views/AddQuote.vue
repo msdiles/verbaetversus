@@ -27,6 +27,7 @@
 import { mapState } from "vuex"
 import QuoteForm from "@/components/QuoteForm"
 import createUrl from "@/utils/createUrl"
+
 export default {
   data: () => ({
     quoteCard: {
@@ -58,6 +59,7 @@ export default {
             words: this.quoteCard.words,
             userId: this.auth.user.id,
             url: url,
+            inspiration: false,
           },
         }
         const result = await this.$store.dispatch("addQuote", data)
@@ -75,7 +77,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 textarea {
   border: 1px solid #9e9e9e;
   border-radius: 5px;

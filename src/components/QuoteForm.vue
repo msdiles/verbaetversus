@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <form class="col s12" form="form">
+    <form class="col s12 card" form="form">
       <div class="row">
         <div class="input-field textarea col s12">
           <textarea
@@ -30,16 +30,36 @@
 </template>
 
 <script>
+import { mapState } from "vuex"
 export default {
-  props: { propQuoteCard: Object },
+  props: { propQuoteCard: Object, propIsInspiration: Boolean },
   data: () => ({
     quote: "",
     author: "",
   }),
   computed: {
+    ...mapState(["auth"]),
     quoteCard() {
       return JSON.parse(JSON.stringify(this.propQuoteCard))
     },
+  },
+  created() {
+    if (this.propIsInspiration) {
+      if (this.auth.user) {
+        this.author = this.auth.user.name
+        this.$nextTick(() => {
+          M.updateTextFields()
+        })
+      }
+      this.unsubscribe = this.$store.subscribe((mutation, state) => {
+        if (mutation.type === "setUserInfo") {
+          this.author = this.auth.user.name
+          this.$nextTick(() => {
+            M.updateTextFields()
+          })
+        }
+      })
+    }
   },
   watch: {
     quote() {
@@ -51,7 +71,6 @@ export default {
       this.$emit("changeQuoteCard", this.quoteCard)
     },
   },
-
   mounted() {
     this.$nextTick(() => {
       this.chipsWords = M.Chips.init(this.$refs.chipsWords, {
@@ -71,7 +90,7 @@ export default {
       this.author = this.quoteCard.author
       this.$nextTick(() => {
         M.updateTextFields()
-        M.textareaAutoResize(this.$refs.textarea)
+        if (this.$refs.textarea) M.textareaAutoResize(this.$refs.textarea)
       })
     })
   },
@@ -92,12 +111,19 @@ export default {
     if (this.chipsTags && this.chipsTags.destroy) {
       this.chipsTags.destroy()
     }
+    if (this.unsubscribe) {
+      this.unsubscribe()
+    }
   },
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/styles/mixins";
+
+form.card {
+  padding: 2rem;
+}
 
 textarea {
   border: 1px solid #9e9e9e;
@@ -137,11 +163,15 @@ textarea {
 
 textarea ~ label {
   padding: 2rem 40%;
+  transition: 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 textarea ~ label.active {
   opacity: 0;
   transition: 0.2s;
-  z-index: -1;
 }
 
 .chips .input {
@@ -149,6 +179,9 @@ textarea ~ label.active {
 }
 
 @include for-phone-only {
+  form.card {
+    padding: 1rem;
+  }
   textarea ~ label {
     padding: 1.5rem 20%;
   }
@@ -157,6 +190,12 @@ textarea ~ label.active {
 @include for-tablet-portrait-only {
   textarea ~ label {
     padding: 1.5rem 35%;
+  }
+}
+
+@include for-desktop-up {
+  form.card {
+    padding: 3rem;
   }
 }
 </style>

@@ -1,9 +1,15 @@
 <template>
   <div class="quote-page">
-    <Loader v-if="loading" class="card col s12 m6 center" style="height:60vh" />
+    <Loader
+      v-if="loading || auth.loading"
+      class="card col s12 m6 center"
+      style="height:60vh"
+    />
     <QuoteCard
       v-else-if="quoteCard && !changeMode"
       :propQuoteCard="quoteCard"
+      :propUser="auth.user"
+      @toggleToFavorite="toggleToFavorite"
     />
 
     <div v-else-if="!changeMode" class="card" style="height:60vh">
@@ -44,7 +50,13 @@
       @changeQuoteCard="changeQuoteCard"
     />
     <div
-      v-if="!loading && quoteCard && isAllowed && !isDeleted"
+      v-if="
+        !loading &&
+          quoteCard &&
+          auth.user &&
+          (isAllowed || auth.user.id === quoteCard.userId) &&
+          !isDeleted
+      "
       class="buttons"
     >
       <button
@@ -70,7 +82,7 @@
         class="btn green waves-effect waves-light btn-add center"
         form="form"
         v-show="changeMode"
-        @click="updateHandler"
+        @click="updateHandler(false)"
         :disabled="!quoteCard.quote || !quoteCard.author || fetchLoading"
       >
         Update quote
@@ -87,7 +99,7 @@ import QuoteCard from "@/components/QuoteCard"
 import checkAccessMixin from "@/mixins/checkAccess.mixin"
 
 export default {
-  mixins: [checkAccessMixin("superadmin")],
+  mixins: [checkAccessMixin("moderator")],
   data: () => ({
     loading: false,
     quoteCard: null,
@@ -121,7 +133,7 @@ export default {
     changeQuoteCard(newQuoteCard) {
       this.quoteCard = JSON.parse(JSON.stringify(newQuoteCard))
     },
-    async updateHandler() {
+    async updateHandler(fromToggleFavorite = false) {
       try {
         this.fetchLoading = true
         const url =
@@ -140,12 +152,13 @@ export default {
         }
         const result = await this.$store.dispatch("updateQuote", data)
         if (result) {
-          this.$message("Quote updated")
-          this.$router.push(`/quote/${result.target.url}`).catch((e) => e)
+          this.quoteCard = result.target
           this.changeMode = false
+          if (!fromToggleFavorite) this.$message("Quote updated")
         }
       } catch (e) {
       } finally {
+
         this.fetchLoading = false
       }
     },
@@ -161,6 +174,25 @@ export default {
       } catch (e) {
       } finally {
         this.fetchLoading = false
+      }
+    },
+    async toggleToFavorite() {
+      try {
+        if (this.quoteCard.favorite.indexOf(this.auth.user.id) > -1) {
+          this.quoteCard.favorite = this.quoteCard.favorite.filter(
+            (fav) => fav !== this.auth.user.id
+          )
+          await this.updateHandler(true)
+          this.$message("Quote removed from favorite")
+        } else {
+          this.quoteCard.favorite = [
+            ...this.quoteCard.favorite,
+            this.auth.user.id,
+          ]
+          await this.updateHandler(true)
+          this.$message("Quote added to favorite")
+        }
+      } catch (e) {
       }
     },
   },
@@ -207,8 +239,8 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    a{
-      margin-bottom:1rem ;
+    a {
+      margin-bottom: 1rem;
     }
   }
 }

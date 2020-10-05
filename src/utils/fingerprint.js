@@ -1,6 +1,10 @@
 import Fingerprint2 from "@fingerprintjs/fingerprintjs"
 
-export default (options = {}) => {
+export default (
+  options = {
+    excludes: { screenResolution: true, availableScreenResolution: true,enumerateDevices:true },
+  }
+) => {
   return new Promise((res, rej) => {
     if (window.requestIdleCallback) {
       requestIdleCallback(async function() {

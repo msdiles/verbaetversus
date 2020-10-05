@@ -104,9 +104,8 @@ export default {
           return this.search
         }),
         debounceTime(1000)
-        // distinctUntilChanged()
       )
-      .subscribe((str) => str && this.searchWord(str))
+      .subscribe((str) => str && this.searchWord("?word=" + str + "&number=10"))
 
     this.blur$ = fromEvent(document, "click")
       .pipe(

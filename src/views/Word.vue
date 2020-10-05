@@ -14,8 +14,24 @@
         :propChangeMod="changeMod"
         @changeWordCard="changeWordCard"
       />
+
+      <div v-if="isFounded" class="card" style="height:60vh">
+        <h4 class="center">Word not found</h4>
+        <div class="buttons another" style="margin-top:4rem">
+          <router-link
+            to="/"
+            class="btn green waves-effect waves-light btn-add center"
+            >To Home<i class="material-icons left">arrow_back </i></router-link
+          >
+          <router-link
+            to="/words/add"
+            class="btn green waves-effect waves-light btn-add center"
+            ><i class="material-icons left">add</i>Add word</router-link
+          >
+        </div>
+      </div>
     </div>
-    <div class=" buttons">
+    <div class=" buttons" v-if="!isFounded">
       <button
         v-show="!changeMod"
         type="button"
@@ -55,6 +71,7 @@ export default {
     wordCard: null,
     loading: false,
     changeMod: false,
+    isFounded: null,
   }),
 
   watch: {
@@ -78,8 +95,7 @@ export default {
         if (!!response.success) {
           this.wordCard = response.result
         } else {
-          this.$message("Word not found")
-          this.$router.push("/")
+          this.isFounded = true
         }
       } catch (error) {
       } finally {
@@ -117,7 +133,7 @@ export default {
         const result = await this.$store.dispatch("updateWord", data)
         if (!!result.success) {
           this.$message("Word updated")
-          this.$router.push(`/word/${this.wordCard.word}`).catch(e=>e)
+          this.$router.push(`/word/${this.wordCard.word}`).catch((e) => e)
           this.changeMod = false
         } else if (!result.success) {
           this.$message("Word already exists")
@@ -146,6 +162,10 @@ export default {
   .btn-clear {
     margin-left: 1rem;
   }
+}
+
+.card {
+  padding: 1rem;
 }
 
 @include for-phone-only {
