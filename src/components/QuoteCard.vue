@@ -24,6 +24,7 @@
             class="col s10 chips offset-s1"
             ref="chipsTags"
             style="margin-top:2rem"
+            v-visible="propQuoteCard.words.length>0"
           >
             <div class="chip" style="background:none">Words:</div>
             <router-link
@@ -40,6 +41,7 @@
             class="col s10  chips offset-s1"
             ref="chipsWords"
             style="margin-top:2rem"
+             v-visible="propQuoteCard.tags.length>0"
           >
             <div class="chip" style="background:none">Tags:</div>
             <router-link
@@ -52,32 +54,7 @@
               {{ tag }}
             </router-link>
           </div>
-
-          <div class="col s12 m4 offset-m6 added-info">
-            <p>
-              Added by
-              <router-link :to="`${propQuoteCard.username}/profile`">{{
-                propQuoteCard.username
-              }}</router-link
-              >. {{ propQuoteCard.date | date("date") }}
-            </p>
-          </div>
-          <div
-            v-if="propUser"
-            class="col s12 m4 offset-s5 offset-m6 added-info add-to-favorite"
-          >
-            <i :key="propQuoteCard.favorite.indexOf(propUser.id) !== -1"
-              class="material-icons"
-              :class="{
-                added: propQuoteCard.favorite.indexOf(propUser.id) !== -1,
-              }"
-              @click="favoriteHandler"
-              v-tooltip=" this.propQuoteCard.favorite.indexOf(this.propUser.id) > -1
-          ? 'Remove from favorite'
-          : 'Add to favorite'"
-              >favorite
-            </i>
-          </div>
+          <UserInfoCard :propCard="propQuoteCard" :propUser="propUser" @toggleToFavorite="favoriteHandler"/>
         </div>
       </form>
     </div>
@@ -86,6 +63,7 @@
 
 <script>
 import { mapState } from "vuex"
+import UserInfoCard from "@/components/UserInfoCard"
 
 export default {
   props: {
@@ -103,6 +81,9 @@ export default {
       this.$emit("toggleToFavorite")
     },
   },
+  components: {
+    UserInfoCard,
+  },
 }
 </script>
 
@@ -113,15 +94,7 @@ export default {
 .chips {
   border-bottom: 1px solid black !important;
 }
-.added-info {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  font-style: italic;
-  font-size: 0.8rem;
-  p {
-    text-align: center;
-  }
-}
+
 
 textarea {
   border-left: 1px solid #9e9e9e;
@@ -174,18 +147,7 @@ textarea {
   }
 }
 
-.add-to-favorite {
-  .added {
-    color: red;
-  }
-  opacity: 0.7;
-  i:hover {
-    opacity: 1;
-    transition: 0.2s;
-    color: red;
-    cursor: pointer;
-  }
-}
+
 
 @include for-phone-only {
   textarea {

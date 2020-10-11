@@ -3,11 +3,11 @@
     <div>
       <div class="page-title">
         <h3>
-          Inspiration
+       {{"Inspiration/Title" |localize}}
         </h3>
       </div>
     </div>
-    <h5 class="center">Try to write something with using proposed words:</h5>
+    <h5 class="center"> {{"Inspiration/Message" |localize}}</h5>
     <div class="proposed-words">
       <div v-for="word in words" :key="word.id">
         <strong>{{ word.word | upper }}</strong>
@@ -29,7 +29,7 @@
         :class="{ disabled: !quoteCard.quote || !quoteCard.author }"
         @click="submitHandler"
       >
-        Add quote
+     {{"Inspiration/ButtonSubmit" |localize}}
       </button>
     </div>
   </div>

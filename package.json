@@ -1,6 +1,6 @@
 {
   "name": "verbaetversus",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "cross-env": "^7.0.2",
     "css-loader": "^4.3.0",
+    "file-loader": "^6.1.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^4.4.1",
     "mini-css-extract-plugin": "^0.11.1",

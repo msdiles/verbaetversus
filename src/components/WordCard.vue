@@ -33,7 +33,7 @@
               </a>
 
               <div class="col s12">
-                <div class="chip" v-for="(tag) in meaning.tags" :key="tag">
+                <div class="chip" v-for="tag in meaning.tags" :key="tag">
                   {{ tag }}
                   <i
                     class="close material-icons"
@@ -47,16 +47,25 @@
           </li>
           <hr :key="meaning._id + new Date().getTime()"
         /></template>
+
+        <UserInfoCard
+        v-if="!propChangeMod"
+          :propCard="propWordCard"
+          :propUser="propUser"
+          @toggleToFavorite="favoriteHandler"
+        />
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import UserInfoCard from "@/components/UserInfoCard"
 export default {
   props: {
     propWordCard: Object,
     propChangeMod: Boolean,
+    propUser: Object,
   },
   data: () => ({}),
   computed: {
@@ -82,6 +91,13 @@ export default {
       ]
       this.$emit("changeWordCard", this.wordCard)
     },
+
+    favoriteHandler() {
+      this.$emit("toggleToFavorite")
+    },
+  },
+  components: {
+    UserInfoCard,
   },
 }
 </script>

@@ -2,7 +2,7 @@
   <div>
     <div class="page-title">
       <h3>
-        Add word
+     {{"AddWord/Title" |localize}}
       </h3>
     </div>
 
@@ -18,6 +18,7 @@
         :propWordCard="wordCard"
         :propChangeMod="true"
         @changeWordCard="changeWordCard"
+        :propUser="null"
       />
 
       <div class="center">
@@ -29,7 +30,7 @@
           @click.prevent="handleSubmit"
           :class="{ disabled: !wordCard.meanings.length }"
         >
-          Add word
+          {{"AddWord/ButtonSubmit"|localize}}
           <i class="material-icons right"></i>
         </button>
       </div>
@@ -42,24 +43,31 @@ import { v4 as uuidv4 } from "uuid"
 import { required } from "vuelidate/lib/validators"
 import WordForm from "@/components/WordForm"
 import WordCard from "@/components/WordCard"
+import { mapState } from "vuex"
 export default {
   data: () => ({
     wordCard: {
       meanings: [],
     },
   }),
-
+  computed: {
+    ...mapState(["auth","language"]),
+  },
   methods: {
     changeWordCard(newWordCard) {
       this.wordCard = JSON.parse(JSON.stringify(newWordCard))
     },
     async handleSubmit() {
       const fetchData = {
-        word: this.wordCard.word,
-        id: this.wordCard._id,
-        meanings: this.wordCard.meanings.map((m) => {
-          return { tags: m.tags, meaning: m.meaning }
-        }),
+        data: {
+          word: this.wordCard.word,
+          id: this.wordCard._id,
+          userId: this.auth.user.id,
+          meanings: this.wordCard.meanings.map((m) => {
+            return { tags: m.tags, meaning: m.meaning }
+          }),
+          language:this.language
+        },
       }
       try {
         const result = await this.$store.dispatch("addWord", fetchData)
@@ -84,13 +92,11 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/mixins";
 
-
 .remove-button {
   color: red;
   border: 2px solid red;
   border-radius: 50%;
 }
-
 
 .buttons {
   display: flex;
@@ -104,7 +110,6 @@ export default {
 }
 
 @include for-phone-only {
-
   .buttons {
     display: flex;
     justify-content: safe;

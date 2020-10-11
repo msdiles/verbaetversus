@@ -12,7 +12,9 @@
       <WordCard
         :propWordCard="wordCard"
         :propChangeMod="changeMod"
+        :propUser="auth.user ? auth.user : null"
         @changeWordCard="changeWordCard"
+        @toggleToFavorite="toggleToFavorite"
       />
 
       <div v-if="isFounded" class="card" style="height:60vh">
@@ -31,7 +33,16 @@
         </div>
       </div>
     </div>
-    <div class=" buttons" v-if="!isFounded">
+    <div
+      class=" buttons"
+      v-if="
+        !isFounded &&
+          !loading &&
+          wordCard &&
+          auth.user &&
+          (isAllowed || auth.user.id === wordCard.userId)
+      "
+    >
       <button
         v-show="!changeMod"
         type="button"
@@ -52,7 +63,7 @@
       <button
         class="btn green  waves-effect waves-light  "
         type="submit"
-        @click="updateHandler"
+        @click="updateHandler(false)"
         v-show="changeMod"
       >
         Update
@@ -64,16 +75,22 @@
 
 <script>
 import { v4 as uuidv4 } from "uuid"
+import { mapState } from "vuex"
 import WordForm from "@/components/WordForm"
 import WordCard from "@/components/WordCard"
+import checkAccessMixin from "@/mixins/checkAccess.mixin"
+
 export default {
+  mixins: [checkAccessMixin("moderator")],
   data: () => ({
     wordCard: null,
     loading: false,
     changeMod: false,
     isFounded: null,
   }),
-
+  computed: {
+    ...mapState(["auth"]),
+  },
   watch: {
     $route() {
       this.findWord()
@@ -97,7 +114,7 @@ export default {
         } else {
           this.isFounded = true
         }
-      } catch (error) {
+      } catch (e) {
       } finally {
         this.loading = false
       }
@@ -121,22 +138,41 @@ export default {
         M.updateTextFields()
       })
     },
-    async updateHandler() {
+    async updateHandler(fromToggleFavorite = false) {
       try {
         const data = {
-          word: this.wordCard.word,
-          id: this.wordCard._id,
-          meanings: this.wordCard.meanings.map((m) => {
-            return { tags: m.tags, meaning: m.meaning }
-          }),
+          data: {
+            ...this.wordCard,
+            meanings: this.wordCard.meanings.map((m) => {
+              return { tags: m.tags, meaning: m.meaning }
+            }),
+          },
         }
         const result = await this.$store.dispatch("updateWord", data)
         if (!!result.success) {
-          this.$message("Word updated")
+          if (!fromToggleFavorite) this.$message("Word updated")
           this.$router.push(`/word/${this.wordCard.word}`).catch((e) => e)
           this.changeMod = false
         } else if (!result.success) {
           this.$message("Word already exists")
+        }
+      } catch (e) {}
+    },
+    async toggleToFavorite() {
+      try {
+        if (this.wordCard.favorite.indexOf(this.auth.user.name) > -1) {
+          this.wordCard.favorite = this.wordCard.favorite.filter(
+            (fav) => fav !== this.auth.user.name
+          )
+          await this.updateHandler(true)
+          this.$message("Word removed from favorite")
+        } else {
+          this.wordCard.favorite = [
+            ...this.wordCard.favorite,
+            this.auth.user.name,
+          ]
+          await this.updateHandler(true)
+          this.$message("Word added to favorite")
         }
       } catch (e) {}
     },

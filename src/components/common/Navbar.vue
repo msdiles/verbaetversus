@@ -2,13 +2,13 @@
   <nav class="navbar  blue-grey darken-1">
     <div class="nav-wrapper">
       <router-link to="/" class="brand-logo left">Logo</router-link>
-
+      <LocaleDropdown />
       <ul class="right">
         <li>
           <a
             class="dropdown-trigger"
             href="#"
-            data-target="dropdown1"
+            data-target="dropdown"
             ref="dropdown"
           >
             <i
@@ -22,7 +22,7 @@
 
           <ul
             v-if="auth.isUserLoggedIn"
-            id="dropdown1"
+            id="dropdown"
             class="dropdown-content"
           >
             <li v-if="auth.isUserLoggedIn" class="divider"></li>
@@ -31,7 +31,7 @@
             <li><a href="#" @click.prevent="logout">Logout</a></li>
           </ul>
 
-          <ul v-else id="dropdown1" class="dropdown-content">
+          <ul v-else id="dropdown" class="dropdown-content">
             <li><router-link to="/login">Login</router-link></li>
             <li class="divider"></li>
             <li>
@@ -40,15 +40,14 @@
           </ul>
         </li>
       </ul>
+
       <NavbarSearch />
-
-
     </div>
   </nav>
 </template>
 
 <script>
-// Add error component
+import LocaleDropdown from "@/components/LocaleDropdown"
 import NavbarSearch from "@/components/NavbarSearch"
 import { mapState } from "vuex"
 
@@ -60,9 +59,7 @@ export default {
   computed: {
     ...mapState(["auth"]),
   },
-  watch: {
-
-  },
+  watch: {},
   methods: {
     async logout() {
       try {
@@ -79,6 +76,7 @@ export default {
   },
   components: {
     NavbarSearch,
+    LocaleDropdown,
   },
 }
 </script>
@@ -92,7 +90,7 @@ export default {
   height: 64px;
 
   z-index: 1000;
-  #dropdown1 {
+  #dropdown {
     position: absolute;
     top: -55px;
     overflow: visible;
@@ -146,6 +144,4 @@ export default {
   position: relative;
   height: 100%;
 }
-
-
 </style>

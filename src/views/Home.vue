@@ -2,14 +2,14 @@
   <div>
     <div class="page-title">
       <h3>
-        Verba et versus
+        {{ "Home/Title" | localize }}
       </h3>
     </div>
     <div class="grid-container">
       <div class="grid-element">
         <div class="card-panel home-card-full">
           <div class="center collection">
-            <a class="collection-item ">List of quotes</a>
+            <a class="collection-item ">{{"Home/QuotesTitle"|localize}}</a>
             <TextLoading v-if="loading" :propLinesNumber="20" />
             <router-link
               :to="`/quote/${quote.url}`"
@@ -20,7 +20,7 @@
             >
 
             <router-link to="/quotes/list" tag="a" class=" collection-item "
-              >Search more quotes</router-link
+              >{{"Home/QuotesMore"|localize}}</router-link
             >
           </div>
         </div>
@@ -31,16 +31,16 @@
           tag="div"
           class="card-panel home-card-third"
         >
-          <div class="center"><p>Test your vocabulary</p></div></router-link
+          <div class="center"><p>{{"Home/TestVocabulary"|localize}}</p></div></router-link
         >
       </div>
       <div class="grid-element">
         <router-link
-          to="/words-quiz"
+          to="/quiz"
           tag="div"
           class="card-panel home-card-third"
         >
-          <div class="center"><p>Word quiz</p></div></router-link
+          <div class="center"><p>{{"Home/WordQuiz"|localize}}</p></div></router-link
         >
       </div>
       <div class="grid-element ">
@@ -50,7 +50,7 @@
           class="card-panel home-card-third"
         >
           <div class="center">
-            <p>Inspiration</p>
+            <p>{{"Home/Inspiration"|localize}}</p>
             <i class="material-icons"> create </i>
           </div>
         </router-link>
@@ -62,7 +62,7 @@
           class="card-panel home-card-third"
         >
           <div class="center">
-            <p>Add word</p>
+            <p>{{"Home/AddWord"|localize}}</p>
             <i class="material-icons">add</i>
           </div></router-link
         >
@@ -74,7 +74,7 @@
           class="card-panel  home-card-third"
         >
           <div class="center">
-            <p>Add quote</p>
+            <p>{{"Home/AddQuote"|localize}}</p>
             <i class="material-icons">format_quote</i>
           </div></router-link
         >

@@ -3,7 +3,7 @@
     <div>
       <div class="page-title">
         <h3>
-          Add Quote or Saying
+          {{ "AddQuote/Title" | localize }}
         </h3>
       </div>
     </div>
@@ -17,7 +17,7 @@
         :class="{ disabled: !quoteCard.quote || !quoteCard.author }"
         @click="submitHandler"
       >
-        Add quote
+        {{ "AddQuote/ButtonSubmit" | localize }}
       </button>
     </div>
   </div>
@@ -38,7 +38,7 @@ export default {
     },
   }),
   computed: {
-    ...mapState(["auth"]),
+    ...mapState(["auth", "language"]),
   },
   methods: {
     changeQuoteCard(newQuoteCard) {
@@ -60,6 +60,7 @@ export default {
             userId: this.auth.user.id,
             url: url,
             inspiration: false,
+            language: this.language,
           },
         }
         const result = await this.$store.dispatch("addQuote", data)

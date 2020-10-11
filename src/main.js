@@ -13,8 +13,10 @@ import LoaderPage from "@/components/common/LoaderPage.vue"
 
 import DateFilter from "@/filters/date.filter.js"
 import UppercaseFilter from "@/filters/uppercase.filter.js"
+import localizeFilter from "@/filters/localize.filter.js"
 
 import tooltipDirective from "@/directives/tooltip.directive.js"
+import visibilityDirective from "@/directives/visibility.directive.js"
 
 import "materialize-css/dist/js/materialize.min"
 import "@/styles/main.scss"
@@ -26,14 +28,16 @@ Vue.use(Vuelidate)
 
 Vue.filter("date", DateFilter)
 Vue.filter("upper", UppercaseFilter)
+Vue.filter("localize",localizeFilter)
 
 Vue.directive("tooltip", tooltipDirective)
+Vue.directive("visible",visibilityDirective)
 
 Vue.component("Loader", Loader)
 Vue.component("LoaderPage", LoaderPage)
 ;(async () => {
   await store.dispatch("refreshOnLoad")
-
+  await store.dispatch("getLanguageOnLoad")
   new Vue({
     router,
     store,

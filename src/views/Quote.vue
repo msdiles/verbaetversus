@@ -178,16 +178,16 @@ export default {
     },
     async toggleToFavorite() {
       try {
-        if (this.quoteCard.favorite.indexOf(this.auth.user.id) > -1) {
+        if (this.quoteCard.favorite.indexOf(this.auth.user.name) > -1) {
           this.quoteCard.favorite = this.quoteCard.favorite.filter(
-            (fav) => fav !== this.auth.user.id
+            (fav) => fav !== this.auth.user.name
           )
           await this.updateHandler(true)
           this.$message("Quote removed from favorite")
         } else {
           this.quoteCard.favorite = [
             ...this.quoteCard.favorite,
-            this.auth.user.id,
+            this.auth.user.name,
           ]
           await this.updateHandler(true)
           this.$message("Quote added to favorite")

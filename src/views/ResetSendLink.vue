@@ -4,7 +4,7 @@
     <div
       class="progress  blue lighten-4"
       style="margin:0;"
-      :style="{ visibility: loading ? 'visible' : 'hidden' }"
+     v-visible="loading"
     >
       <div class="indeterminate blue"></div>
     </div>

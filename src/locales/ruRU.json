@@ -1,0 +1,48 @@
+{
+  "AddQuote": {
+    "Title": "Добавить цитату или высказывание",
+    "ButtonSubmit": "Добавить"
+  },
+  "AddWord": {
+    "Title": "Добавить слово",
+    "ButtonSubmit": "Добавить"
+  },
+  "Error": {
+    "Title": "PAGE NOT FOUND",
+    "Message": "The page you requested could not founded",
+    "ButtonToHome": "Home"
+  },
+  "Home": {
+    "Title": "Verba et versus",
+    "QuotesTitle": "List of quotes",
+    "QuotesMore": "Search more quotes",
+    "TestVocabulary": "Test your vocabulary",
+    "WordQuiz": "Word quiz",
+    "Inspiration": "Inspiration",
+    "AddWord": "Add word",
+    "AddQuote": "Add quote"
+  },
+  "Inspiration": {
+    "Title": "Inspiration",
+    "Message": "Try to write something with using proposed words:",
+    "ButtonSubmit": " Add quote"
+  },
+  "List": {
+    "Title": "  List of Quotes",
+    "QuoteLabel": "Quote:",
+    "QuotePlaceholder": "Enter quote or part of quote",
+    "SearchButton":"Search",
+    "ShowOptions": "Show other options",
+    "RelatedWordLabel": "Related word",
+    "TagLabel": "Tag",
+    "AuthorLabel": "Author",
+    "NumberLabel": "Number of quotes",
+    "ByUserCheckbox": "Create by user",
+    "FavoriteCheckbox": "Favorite",
+    "EnterWordMessage": "Enter some word, tag, author or part of quote",
+    "NotFoundMessage": "Quotes not found"
+  },
+  "Profile": {
+    "ProfileTitle": "Profile"
+  }
+}

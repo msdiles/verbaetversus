@@ -1,9 +1,9 @@
 <template>
   <div class="error-page">
     <p>404</p>
-    <h3>PAGE NOT FOUND</h3>
-    <p>The page you requested could not founded</p>
-    <router-link class="btn" to="/">Home</router-link>
+    <h3>{{"Error/Title" |localize}}</h3>
+    <p>{{"Error/Message" |localize}}</p>
+    <router-link class="btn" to="/">{{"Error/ButtonToHome" |localize}}</router-link>
   </div>
 </template>
 

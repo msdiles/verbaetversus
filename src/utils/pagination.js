@@ -65,5 +65,8 @@ export default (listFrom = [], number) => {
         this.formatted = updateFormatted(this.current)
       }
     },
+    update(){
+      this.formatted = updateFormatted(this.current)
+    }
   }
 }

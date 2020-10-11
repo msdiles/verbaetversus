@@ -2,7 +2,7 @@
   <section>
     <div class="page-title">
       <h3>
-        Profile
+        {{ "Profile/ProfileTitle" | localize}}
       </h3>
     </div>
 
@@ -43,7 +43,6 @@ export default {
       await this.$store.dispatch("getUserInfo")
     } catch (e) {}
   },
-
 }
 </script>
 

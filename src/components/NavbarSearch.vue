@@ -28,8 +28,8 @@
 
     <div
       class="progress  blue lighten-4"
-      style="margin:0; width:100%;position:absolute;top:10pxz-index:1;"
-      :style="{ visibility: loading ? 'visible' : 'hidden' }"
+      style="margin:0; width:100%;position:absolute;z-index:-1;"
+      v-visible="loading"
     >
       <div class="indeterminate blue"></div>
     </div>

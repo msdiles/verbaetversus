@@ -1,11 +1,7 @@
 <template>
   <LoaderPage v-if="isLoading || isLogged" />
   <form v-else class="card auth-card" @submit.prevent="handleSubmit">
-    <div
-      class="progress  blue lighten-4"
-      style="margin:0;"
-      :style="{ visibility: loading ? 'visible' : 'hidden' }"
-    >
+    <div class="progress  blue lighten-4" style="margin:0;" v-visible="loading">
       <div class="indeterminate blue"></div>
     </div>
     <div class="card-content">
@@ -88,7 +84,7 @@
 import { required } from "vuelidate/lib/validators"
 import unAuth from "@/mixins/unAuth.mixin.js"
 export default {
-  mixins:[unAuth],
+  mixins: [unAuth],
   data: () => ({
     email: "",
     password: "",

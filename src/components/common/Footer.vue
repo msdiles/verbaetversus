@@ -27,6 +27,7 @@ export default {}
 <style lang="scss" scoped>
 @import "@/styles/mixins";
 .page-footer {
+  position: relative;
   @include for-phone-only {
     width: 100%;
   }
