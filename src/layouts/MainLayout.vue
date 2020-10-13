@@ -16,10 +16,6 @@ import messages from "../utils/messages"
 
 export default {
   mixins: [errorHandlerMixin],
-  mounted() {
-    if (messages[this.$route.query.message])
-      this.$message(messages[this.$route.query.message])
-  },
   components: {
     Navbar,
     Footer,

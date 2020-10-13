@@ -9,19 +9,19 @@
       <transition name="fade">
         <div v-if="!isStarted" class="quiz-card card">
           <div class="card-content">
-            <h5 class="title">Test your vocabulary</h5>
+            <h5 class="title">{{ "Quiz/Message" | localize }}</h5>
             <button
               type="button"
               class="btn green waves-effect waves-light"
               @click="isStarted = !isStarted"
             >
-              Start
+              {{ "Quiz/Button" | localize }}
             </button>
           </div>
         </div>
       </transition>
       <transition name="appear">
-        <QuizContent v-if="isStarted"/>
+        <QuizContent v-if="isStarted" />
       </transition>
     </div>
   </div>
@@ -40,6 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins";
 .card-content {
   display: flex;
   justify-content: center;
@@ -52,10 +53,17 @@ export default {
   }
 }
 
+@include for-phone-only {
+  .card-content {
+    padding: 5rem 2.5rem;
+    height: 40.5rem;
+  }
+}
+
 .animation-body {
   position: relative;
   margin-top: 1rem;
-  min-height:41rem;
+  min-height: 41rem;
 }
 
 .fade-enter-active,
@@ -78,20 +86,18 @@ export default {
 .appear-enter-active,
 .appear-leave-active {
   transition: all 1s;
-  top:0;
-  left:0;
-  right:0;
+  top: 0;
+  left: 0;
+  right: 0;
   position: absolute;
   opacity: 1;
 }
 .appear-enter,
 .appear-leave-to {
-
-
   opacity: 0;
-    position: absolute;
-  top:0;
-  left:100%;
+  position: absolute;
+  top: 0;
+  left: 100%;
   right: -100%;
 }
 </style>

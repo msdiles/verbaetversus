@@ -5,7 +5,7 @@
       <div class="indeterminate blue"></div>
     </div>
     <div class="card-content">
-      <span class="card-title center">Sign In</span>
+      <span class="card-title center">{{ "Login/Title" | localize }}</span>
       <hr />
 
       <div class="input-field">
@@ -14,11 +14,11 @@
           id="login"
           v-model="email"
           :class="{ invalid: $v.email.$dirty && !$v.email.required }"
-        /><label label for="login">Email</label>
+        /><label label for="login">{{ "Login/EmailLabel" | localize }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.email.$dirty && !$v.email.required"
-          >Enter email</small
+          >{{ "Login/ErrorMessageEmail" | localize }}</small
         >
       </div>
       <div v-if="!viewPassword" class="input-field">
@@ -32,11 +32,13 @@
           :class="{ active: viewPassword }"
           @click="viewPassword = !viewPassword"
           >remove_red_eye </i
-        ><label label for="password">Password</label>
+        ><label label for="password">{{
+          "Login/PasswordLabel" | localize
+        }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.password.$dirty && !$v.password.required"
-          >Enter password</small
+          >{{ "Login/ErrorMessagePassword" | localize }}</small
         >
       </div>
 
@@ -51,11 +53,13 @@
           :class="{ active: viewPassword }"
           @click="viewPassword = !viewPassword"
           >remove_red_eye </i
-        ><label label for="password">Password</label>
+        ><label label for="password">{{
+          "Login/PasswordLabel" | localize
+        }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.password.$dirty && !$v.password.required"
-          >Enter password</small
+          >{{ "Login/ErrorMessagePassword" | localize }}</small
         >
       </div>
     </div>
@@ -65,15 +69,18 @@
           type="submit"
           class="btn waves-effect waves-light auth-button blue"
         >
-          Sign In
+          {{ "Login/ButtonSubmit" | localize }}
         </button>
         <small>
-          Don't have an account?<router-link to="register">
-            Sign Up</router-link
+          {{ "Login/DonTHaveAccount" | localize
+          }}<router-link to="register">
+            {{ "Login/LinkText" | localize }}</router-link
           >
         </small>
         <small>
-          <router-link to="reset">Forgot password? </router-link>
+          <router-link to="reset">{{
+            "Login/ForgotPassword" | localize
+          }}</router-link>
         </small>
       </div>
     </div>
@@ -109,7 +116,6 @@ export default {
         }
 
         await this.$store.dispatch("signIn", data)
-        this.$router.push("/?message=login")
       } catch (e) {
       } finally {
         this.loading = false

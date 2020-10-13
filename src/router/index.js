@@ -83,12 +83,6 @@ const routes = [
     component: () => import("@/views/Quiz"),
   },
   {
-    path: "/test",
-    name: "test",
-    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
-    component: () => import("@/views/Test"),
-  },
-  {
     path: "/profile",
     name: "profile",
     meta: { layout: "main", requiresAuth: true, requiresUnAuth: false },

@@ -72,7 +72,9 @@
         class="word-field"
         style="height:2.5rem;align-items:center;z-index:100"
       >
-        <p style="width:40%;text-align:center;">No result found.</p>
+        <p style="width:40%;text-align:center;">
+          {{ "NavbarSearch/NoResultFound" | localize }}
+        </p>
       </div>
     </div>
   </div>

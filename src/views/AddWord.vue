@@ -72,10 +72,10 @@ export default {
       try {
         const result = await this.$store.dispatch("addWord", fetchData)
         if (!!result) {
-          this.$message("Word Added")
+          this.$messageGreen("Word Added")
           this.clearFields()
         } else {
-          this.$message("Word Already Exists")
+          this.$messageRed("Word Already Exists")
         }
       } catch (e) {}
     },

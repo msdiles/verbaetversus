@@ -12,6 +12,10 @@
     "Message": "The page you requested could not founded",
     "ButtonToHome": "Home"
   },
+  "Favorite": {
+    "Remove": "Remove from favorite",
+    "Add": "Add to favorite"
+  },
   "Home": {
     "Title": "Verba et versus",
     "QuotesTitle": "List of quotes",
@@ -32,10 +36,39 @@
     "EnterWordMessage": "Enter some word, tag, author or part of quote",
     "NotFoundMessage": "Quotes not found"
   },
-  "SearchQuotes":{
+  "Login": {
+    "Title": "Sign In",
+    "EmailLabel": "Enter email",
+    "ErrorMessageEmail": "Enter email",
+    "PasswordLabel": "Password",
+    "ErrorMessagePassword": "Enter password",
+    "ButtonSubmit": "Sign In",
+    "DonTHaveAccount": "Don't have an account?",
+    "LinkText": "Sign Up",
+    "ForgotPassword": "Forgot password?"
+  },
+  "Navbar": {
+    "Profile": "Profile",
+    "Logout": "Logout",
+    "Login": "Login",
+    "Register": "Register"
+  },
+  "NavbarSearch": {
+    "NoResultFound.": "No result found."
+  },
+  "Quote": {
+    "QuoteNotFound": "Quote not found",
+    "LinkToHome": "To Home",
+    "AddQuote": "Add quote",
+    "QuoteDeleted": "Quote deleted!",
+    "ChangeButton": "Change quote",
+    "DeleteButton": "Delete quote",
+    "UpdateButton": "Update quote"
+  },
+  "SearchQuotes": {
     "QuoteLabel": "Quote:",
     "QuotePlaceholder": "Enter quote or part of quote",
-    "SearchButton":"Search",
+    "SearchButton": "Search",
     "ShowOptions": "Show other options",
     "RelatedWordLabel": "Related word",
     "TagLabel": "Tag",
@@ -43,10 +76,123 @@
     "NumberLabel": "Number of quotes",
     "ByUserCheckbox": "Create by user",
     "FavoriteCheckbox": "Favorite",
-    "SelectMessage":"Choose your option",
-    "SelectLabel":"Language"
+    "SelectMessage": "Choose your option",
+    "SelectLabel": "Language"
+  },
+  "SignUp": {
+    "Title": "Sign Up",
+    "LoginLabel": "User name",
+    "ErrorLogin": "Enter login",
+    "ErrorLoginLengthStart": "Login must have at least",
+    "ErrorLoginLengthEnd": " characters",
+    "ErrorLoginLengthMaxStart": "Your login can't be longer than",
+    "ErrorLoginLengthMaxEnd": " characters",
+    "EmailLabel": "Email",
+    "ErrorEmail": "Enter email",
+    "ErrorEmailInvalid": "Invalid email format",
+    "ErrorEmailLengthMaxStart": "Your email can't be longer than",
+    "ErrorEmailLengthMaxEnd": " characters",
+    "ErrorEmailExists": "User with this email already exists",
+    "PasswordLabel": "Password",
+    "ErrorPassword": "Enter password",
+    "ErrorPasswordLengthStart": "Password must have at least",
+    "ErrorPasswordLengthEnd": " letters",
+    "ErrorPasswordUppercase": "Password must have at least one uppercase letter",
+    "ErrorPasswordLowercase": "Password must have at least one lowercase letter",
+    "ErrorPasswordDigit": "Password must have at least one digit character",
+    "ErrorPasswordSpecial": "Password mustn't have any special characters",
+    "ErrorPasswordLengthMaxStart": "Your password can't be longer than",
+    "ErrorPasswordLengthMaxEnd": " characters",
+    "PasswordRepeatLabel": " Confirm Password",
+    "ErrorPasswordRepeat": "Repeat password",
+    "ErrorPasswordRepeatMatch": "Passwords don't match",
+    "ButtonSubmit": "SIGN UP",
+    "HaveAccount": "Already have an account?",
+    "HaveAccountLink": " Sign In",
+    "ModalTitle": "Registration completed successfully",
+    "HomeLink": "Home",
+    "LoginLink": "Go To Login Page"
   },
   "Profile": {
     "ProfileTitle": "Profile"
+  },
+  "Quiz": {
+    "Title": "Quiz",
+    "Message": "Test your vocabulary",
+    "Button": "Start"
+  },
+  "QuoteCard": {
+    "WordsList": "Words:",
+    "TagsList": "Tags:"
+  },
+  "QuoteCollapsible": {
+    "TagsList": "Tags:",
+    "WordsList": "Words:",
+    "QuoteLink": "To Quote Card"
+  },
+  "QuizContent": {
+    "Question": "What is the meaning of"
+  },
+  "QuizContentResult": {
+    "Title": "Result:",
+    "CorrectAnswers": "correct answers out of",
+    "ToWord": "To word"
+  },
+  "QuoteForm": {
+    "TextareaLabel": "Enter Quote or Saying",
+    "AuthorLabel": "Author",
+    "WordsPlaceholder": "Enter related words",
+    "TagsPlaceholder": "Enter tags"
+  },
+  "ResetPassword": {
+    "Message": "Reset password",
+    "PasswordLabel": "Password",
+    "ErrorPassword": "Enter password",
+    "ErrorPasswordLengthStart": "Password must have at least",
+    "ErrorPasswordLengthEnd": " letters",
+    "ErrorPasswordUppercase": "Password must have at least one uppercase letter",
+    "ErrorPasswordLowercase": "Password must have at least one lowercase letter",
+    "ErrorPasswordDigit": "Password must have at least one digit character",
+    "ErrorPasswordSpecial": "Password mustn't have any special characters",
+    "ErrorPasswordLengthMaxStart": "Your password can't be longer than",
+    "ErrorPasswordLengthMaxEnd": " characters",
+    "PasswordRepeatLabel": " Confirm Password",
+    "ErrorPasswordRepeat": "Repeat password",
+    "ErrorPasswordRepeatMatch": "Passwords don't match",
+    "ButtonSubmit": "Reset Password",
+    "ModalMessage": "Your password has been changed successfully",
+    "HomeLink": "Go To Home Page"
+  },
+  "ResetSendLink": {
+    "Title": "Forgot your password?",
+    "Message": "Enter your email.",
+    "EmailLabel": "Email",
+    "EmailError": "Enter email",
+    "ButtonSubmit": "Send password reset link",
+    "ModalTitle": "Check Your Email",
+    "ModalMessage": "We just sent instructions for completing your password reset to the designated email address",
+    "HomeLink": "Go To Home Page"
+  },
+  "UserInfoCard": {
+    "AddedBy": "Added by"
+  },
+  "Word": {
+    "WordNotFound": "Word not found",
+    "LinkToHome": "To Home",
+    "AddWord": "Add word",
+    "ChangeButton": "Change",
+    "DeleteButton": "Delete",
+    "UpdateButton": "Update"
+  },
+  "WordCard": {
+    "Word": "Word"
+  },
+  "WordForm": {
+    "WordLabel": "Enter word",
+    "WordError":"Enter word",
+    "TextareaLabel": "Add meaning of the word",
+    "TextareaError":"Enter a meaning",
+    "AddButton": "Add meaning",
+    "ClearButton": "Clear Fields"
   }
 }

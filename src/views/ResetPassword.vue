@@ -1,15 +1,13 @@
 <template>
   <LoaderPage v-if="loadingCheck || isLoading || isLogged" />
   <form v-else class="card auth-card" @submit.prevent="handleSubmit">
-    <div
-      class="progress  blue lighten-4"
-      style="margin:0;"
-     v-visible="loading"
-    >
+    <div class="progress  blue lighten-4" style="margin:0;" v-visible="loading">
       <div class="indeterminate blue"></div>
     </div>
     <div class="card-content">
-      <span class="card-title center">Reset password</span>
+      <span class="card-title center">{{
+        "ResetPassword/Message" | localize
+      }}</span>
       <hr />
 
       <div class="input-field">
@@ -27,43 +25,47 @@
               ($v.password.$dirty && !$v.password.mustNotHaveSpecial) ||
               ($v.password.$dirty && !$v.password.maxLength),
           }"
-        /><label label for="password">Password</label>
+        /><label label for="password">{{
+          "ResetPassword/PasswordLabel" | localize
+        }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.password.$dirty && !$v.password.required"
-          >Enter password</small
+          >{{ "ResetPassword/ErrorPassword" | localize }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.minLength"
-          >Password must have at least
-          {{ $v.password.$params.minLength.min }} letters
+          >{{ "ResetPassword/ErrorPasswordLengthStart" | localize }}
+          {{ $v.password.$params.minLength.min
+          }}{{ "ResetPassword/ErrorPasswordLengthEnd" | localize }}
         </small>
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustHaveUppercase"
-          >Password must have at least one uppercase letter</small
+          >{{ "ResetPassword/ErrorPasswordUppercase" | localize }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustHaveLowercase"
-          >Password must have at least one lowercase letter</small
+          >{{ "ResetPassword/ErrorPasswordLowercase" | localize }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustHaveDigit"
-          >Password must have at least one digit character</small
+          >{{ "ResetPassword/ErrorPasswordDigit" | localize }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustNotHaveSpecial"
-          >Password mustn't have any special characters</small
+          >{{ "ResetPassword/ErrorPasswordSpecial" | localize }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.maxLength"
-          >Your password can't be longer than
-          {{ $v.password.$params.maxLength.max }} characters
+          >{{ "ResetPassword/ErrorPasswordLengthMaxStart" | localize }}
+          {{ $v.password.$params.maxLength.max }}
+          {{ "ResetPassword/ErrorPasswordLengthMaxEnd" | localize }}
         </small>
       </div>
 
@@ -77,18 +79,20 @@
               ($v.passwordRepeat.$dirty && !$v.passwordRepeat.required) ||
               ($v.passwordRepeat.$dirty && !$v.passwordRepeat.sameAsPassword),
           }"
-        /><label label for="resetPassword">Confirm Password</label>
+        /><label label for="resetPassword">{{
+          "ResetPassword/PasswordRepeatLabel" | localize
+        }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.passwordRepeat.$dirty && !$v.passwordRepeat.required"
-          >Repeat password</small
+          >{{ "ResetPassword/ErrorPasswordRepeat" | localize }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="
             $v.passwordRepeat.$dirty && !$v.passwordRepeat.sameAsPassword
           "
-          >Passwords don't match
+          >{{ "ResetPassword/ErrorPasswordRepeatMatch" | localize }}
         </small>
       </div>
     </div>
@@ -98,17 +102,17 @@
           type="submit"
           class="btn waves-effect waves-light auth-button blue"
         >
-          Reset Password
+          {{ "ResetPassword/ButtonSubmit" | localize }}
         </button>
       </div>
     </div>
     <div id="modal1" class="modal" ref="modal">
       <div class="modal-content">
-        <h4 class="center">Your password has been changed successfully</h4>
+        <h4 class="center">{{ "ResetPassword/ModalMessage" | localize }}</h4>
       </div>
       <div class="modal-footer" style="text-align:center">
-        <router-link to="/" class="modal-close waves-effect waves-light btn"
-          >Go To Home Page</router-link
+        <router-link to="/" class="modal-close waves-effect waves-light btn">
+          {{ "ResetPassword/HomeLink" | localize }}</router-link
         >
       </div>
     </div>
@@ -155,7 +159,7 @@ export default {
         this.loadingCheck = false
       } else {
         this.$router.push("/")
-        this.$message("Your password reset link appears to be invalid")
+        this.$messageRed("Your password reset link appears to be invalid")
       }
     } catch (e) {}
   },

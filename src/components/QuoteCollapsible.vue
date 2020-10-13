@@ -14,7 +14,7 @@
     </div>
     <div class="collapsible-body row">
       <div class="tags col s12 m4" v-show="propQuoteCard.tags.length">
-        Tags:
+        {{ "QuoteCollapsible/TagsList" | localize }}
         <div
           class="chip"
           v-for="(tag, index) in propQuoteCard.tags"
@@ -28,7 +28,7 @@
         v-show="propQuoteCard.words.length"
         :class="{ 'offset-m4': !propQuoteCard.tags.length }"
       >
-        Words:
+        {{ "QuoteCollapsible/WordsList" | localize }}
         <div
           class="chip"
           v-for="(word, index) in propQuoteCard.words"
@@ -42,11 +42,11 @@
         :to="`/quote/${propQuoteCard.url}`"
         class="btn green waves-effect waves-light col  s12 m4"
         :class="{
-          'offset-m4': !propQuoteCard.words.length ,
+          'offset-m4': !propQuoteCard.words.length,
           'offset-m8':
             !propQuoteCard.tags.length && !propQuoteCard.words.length,
         }"
-        >To Quote Card</router-link
+        >{{ "QuoteCollapsible/QuoteLink" | localize }}</router-link
       >
     </div>
   </li>
@@ -89,11 +89,11 @@ textarea {
 }
 
 @include for-phone-only {
-  .collapsible-header{
-    display:block;
+  .collapsible-header {
+    display: block;
   }
- li{
-   margin:0 !important;
- }
+  li {
+    margin: 0 !important;
+  }
 }
 </style>

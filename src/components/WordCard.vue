@@ -12,7 +12,7 @@
         {{
           wordCard.word
             ? wordCard.word[0].toUpperCase() + wordCard.word.slice(1)
-            : "Word"
+            :  "WordCard/Word" | localize
         }}
       </h4>
       <ul>

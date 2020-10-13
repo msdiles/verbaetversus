@@ -9,13 +9,13 @@
             v-model.trim="quote"
             ref="textarea"
           ></textarea>
-          <label for="quote">Enter Quote or Saying</label>
+          <label for="quote">   {{ "QuoteForm/TextareaLabel" | localize }}</label>
         </div>
 
         <div class="input-field col s11 offset-s1 m6 offset-m6 author">
           <i class="material-icons">remove</i>
           <input id="last_name" type="text" class="validate" v-model="author" />
-          <label for="last_name">Author</label>
+          <label for="last_name">   {{ "QuoteForm/AuthorLabel" | localize }}</label>
         </div>
 
         <div class="col s12 chips" ref="chipsWords">
@@ -74,13 +74,13 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.chipsWords = M.Chips.init(this.$refs.chipsWords, {
-        placeholder: "Enter related words",
+         placeholder: this.$options.filters.localize("QuoteForm/WordsPlaceholder")  ,
         data: this.quoteCard.words.map((w) => ({ tag: w })),
         onChipDelete: () => this.updateWords(),
         onChipAdd: () => this.updateWords(),
       })
       this.chipsTags = M.Chips.init(this.$refs.chipsTags, {
-        placeholder: "Enter tags",
+        placeholder: this.$options.filters.localize("QuoteForm/TagsPlaceholder") ,
         data: this.quoteCard.tags.map((t) => ({ tag: t })),
         onChipDelete: () => this.updateTags(),
         onChipAdd: () => this.updateTags(),

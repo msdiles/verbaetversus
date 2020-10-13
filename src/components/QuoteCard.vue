@@ -24,9 +24,11 @@
             class="col s10 chips offset-s1"
             ref="chipsTags"
             style="margin-top:2rem"
-            v-visible="propQuoteCard.words.length>0"
+            v-visible="propQuoteCard.words.length > 0"
           >
-            <div class="chip" style="background:none">Words:</div>
+            <div class="chip" style="background:none">
+              {{ "QuoteCard/WordsList" | localize }}
+            </div>
             <router-link
               tag="div"
               :to="`/word/${word}`"
@@ -41,9 +43,11 @@
             class="col s10  chips offset-s1"
             ref="chipsWords"
             style="margin-top:2rem"
-             v-visible="propQuoteCard.tags.length>0"
+            v-visible="propQuoteCard.tags.length > 0"
           >
-            <div class="chip" style="background:none">Tags:</div>
+            <div class="chip" style="background:none">
+              {{ "QuoteCard/TagsList" | localize }}
+            </div>
             <router-link
               tag="div"
               :to="`/quotes/list?tag=${tag}`"
@@ -54,7 +58,11 @@
               {{ tag }}
             </router-link>
           </div>
-          <UserInfoCard :propCard="propQuoteCard" :propUser="propUser" @toggleToFavorite="favoriteHandler"/>
+          <UserInfoCard
+            :propCard="propQuoteCard"
+            :propUser="propUser"
+            @toggleToFavorite="favoriteHandler"
+          />
         </div>
       </form>
     </div>
@@ -94,7 +102,6 @@ export default {
 .chips {
   border-bottom: 1px solid black !important;
 }
-
 
 textarea {
   border-left: 1px solid #9e9e9e;
@@ -146,8 +153,6 @@ textarea {
     background-color: #26a69a;
   }
 }
-
-
 
 @include for-phone-only {
   textarea {

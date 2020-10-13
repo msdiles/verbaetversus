@@ -9,7 +9,9 @@
       <div class="indeterminate blue"></div>
     </div>
     <div class="card-content">
-      <span class="card-title center">Sign Up</span>
+      <span class="card-title center">{{
+        "SignUp/Title" | localize
+      }}</span>
       <hr />
 
       <div class="input-field">
@@ -24,23 +26,35 @@
               ($v.login.$dirty && !$v.login.maxLength),
           }"
         />
-        <label label for="login">User name</label>
+        <label label for="login">{{
+        "SignUp/LoginLabel" | localize
+      }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.login.$dirty && !$v.login.required"
-          >Enter login</small
+          >{{
+        "SignUp/ErrorLogin" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.login.$dirty && !$v.login.minLength"
-          >Login must have at least
-          {{ $v.login.$params.minLength.min }} characters
+          >{{
+        "SignUp/ErrorLoginLengthStart" | localize
+      }}
+          {{ $v.login.$params.minLength.min }}{{
+        "SignUp/ErrorLoginLengthEnd" | localize
+      }}
         </small>
         <small
           class="helper-text invalid"
           v-else-if="$v.login.$dirty && !$v.login.maxLength"
-          >Your login can't be longer than
-          {{ $v.login.$params.maxLength.max }} characters
+          >{{
+        "SignUp/ErrorLoginLengthMaxStart" | localize
+      }}
+          {{ $v.login.$params.maxLength.max }}{{
+        "SignUp/ErrorLoginLengthMaxEnd" | localize
+      }}
         </small>
       </div>
 
@@ -56,25 +70,37 @@
               ($v.email.$dirty && !$v.email.maxLength) ||
               isUserExist,
           }"
-        /><label label for="email">Email</label>
+        /><label label for="email">{{
+        "SignUp/EmailLabel" | localize
+      }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.email.$dirty && !$v.email.required"
-          >Enter email</small
+          >{{
+        "SignUp/ErrorEmail" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.email.$dirty && !$v.email.email"
-          >Invalid email format
+          >{{
+        "SignUp/ErrorEmailInvalid" | localize
+      }}
         </small>
         <small
           class="helper-text invalid"
           v-else-if="$v.email.$dirty && !$v.email.maxLength"
-          >Your email can't be longer than
-          {{ $v.email.$params.maxLength.max }} characters
+          >{{
+        "SignUp/ErrorEmailLengthMaxStart" | localize
+      }}
+          {{ $v.email.$params.maxLength.max }}{{
+        "SignUp/ErrorEmailLengthMaxEnd" | localize
+      }}
         </small>
         <small class="helper-text invalid" v-else-if="isUserExist"
-          >User with this email already exists
+          >{{
+        "SignUp/ErrorEmailExists" | localize
+      }}
         </small>
       </div>
 
@@ -93,43 +119,63 @@
               ($v.password.$dirty && !$v.password.mustNotHaveSpecial) ||
               ($v.password.$dirty && !$v.password.maxLength),
           }"
-        /><label label for="password">Password</label>
+        /><label label for="password">{{
+        "SignUp/PasswordLabel" | localize
+      }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.password.$dirty && !$v.password.required"
-          >Enter password</small
+          >{{
+        "SignUp/ErrorPassword" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.minLength"
-          >Password must have at least
-          {{ $v.password.$params.minLength.min }} letters
+          >{{
+        "SignUp/ErrorPasswordLengthStart" | localize
+      }}
+          {{ $v.password.$params.minLength.min }}{{
+        "SignUp/ErrorPasswordLengthEnd" | localize
+      }}
         </small>
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustHaveUppercase"
-          >Password must have at least one uppercase letter</small
+          >{{
+        "SignUp/ErrorPasswordUppercase" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustHaveLowercase"
-          >Password must have at least one lowercase letter</small
+          >{{
+        "SignUp/ErrorPasswordLowercase" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustHaveDigit"
-          >Password must have at least one digit character</small
+          >{{
+        "SignUp/ErrorPasswordDigit" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.mustNotHaveSpecial"
-          >Password mustn't have any special characters</small
+          >{{
+        "SignUp/ErrorPasswordSpecial" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="$v.password.$dirty && !$v.password.maxLength"
-          >Your password can't be longer than
-          {{ $v.password.$params.maxLength.max }} characters
+          >{{
+        "SignUp/ErrorPasswordLengthMaxStart" | localize
+      }}
+          {{ $v.password.$params.maxLength.max }}{{
+        "SignUp/ErrorPasswordLengthMaxEnd" | localize
+      }}
         </small>
       </div>
 
@@ -143,18 +189,24 @@
               ($v.passwordRepeat.$dirty && !$v.passwordRepeat.required) ||
               ($v.passwordRepeat.$dirty && !$v.passwordRepeat.sameAsPassword),
           }"
-        /><label label for="passwordRepeat">Confirm Password</label>
+        /><label label for="passwordRepeat">{{
+        "SignUp/PasswordRepeatLabel" | localize
+      }}</label>
         <small
           class="helper-text invalid"
           v-if="$v.passwordRepeat.$dirty && !$v.passwordRepeat.required"
-          >Repeat password</small
+          >{{
+        "SignUp/ErrorPasswordRepeat" | localize
+      }}</small
         >
         <small
           class="helper-text invalid"
           v-else-if="
             $v.passwordRepeat.$dirty && !$v.passwordRepeat.sameAsPassword
           "
-          >Passwords don't match
+          >{{
+        "SignUp/ErrorPasswordRepeatMatch" | localize
+      }}
         </small>
       </div>
     </div>
@@ -165,25 +217,37 @@
           class="btn waves-effect waves-light auth-button blue "
           :class="{ disabled: loading }"
         >
-          Sign Up
+          {{
+        "SignUp/ButtonSubmit" | localize
+      }}
         </button>
       </div>
       <small class="center">
-        Already have an account?<router-link to="login"> Sign In</router-link>
+        {{
+        "SignUp/HaveAccount" | localize
+      }}<router-link to="login">{{
+        "SignUp/HaveAccountLink" | localize
+      }}</router-link>
       </small>
     </div>
     <div id="modal1" class="modal" ref="modal">
       <div class="modal-content">
-        <h4 class="center">Registration completed successfully</h4>
+        <h4 class="center">{{
+        "SignUp/ModalTitle" | localize
+      }}</h4>
       </div>
       <div class="modal-footer" style="text-align:center">
         <router-link to="/" class="modal-close waves-effect waves-light btn"
-          >Go To Home Page</router-link
+          >{{
+        "SignUp/HomeLink" | localize
+      }}</router-link
         >
         <router-link
           to="/login"
           class="modal-close waves-effect waves-light btn"
-          >Go To Login Page</router-link
+          >{{
+        "SignUp/LoginLink" | localize
+      }}</router-link
         >
       </div>
     </div>

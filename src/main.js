@@ -45,8 +45,9 @@ Vue.component("LoaderPage", LoaderPage)
   }).$mount("#app")
 })()
 //TODO ADD ANIMATION
-//TODO add color to props
 //TODO FIX profile refresh
-//TODO pagination
-//TODO add likes and favorite
 //TODO words message when word isExist
+//TODO add list of related quotes to word card
+//TODO add favorite quotes, words to profile
+//FIXME fix word related at quote add
+//FIXME fix width of dropdown navbar

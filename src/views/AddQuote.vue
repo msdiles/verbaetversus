@@ -65,7 +65,7 @@ export default {
         }
         const result = await this.$store.dispatch("addQuote", data)
         if (result) {
-          this.$message("Quote added")
+          this.$messageGreen("Quote added")
           this.$router.push(`/quote/${result.target.url}`)
         }
       } catch (e) {}

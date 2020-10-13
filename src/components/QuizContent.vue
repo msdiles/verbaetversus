@@ -18,7 +18,7 @@
         <div class="quiz-element" @click="handleClick($event, word.word)">
           <div class="quiz-question z-depth-2">
             <p>
-              What is the meaning of
+              {{"QuizContent/Question"|localize}}
               <strong>{{ word.word.word | upper }}</strong>
             </p>
           </div>
@@ -191,6 +191,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins";
+
 .card-content {
   padding: 2rem;
   display: flex;
@@ -354,5 +356,60 @@ export default {
 
   left: 100%;
   right: -100%;
+}
+
+@include for-phone-only {
+  .card-content {
+    padding: 1rem;
+  }
+  .quiz-question {
+    flex: 1 1 80%;
+    padding: 1rem 0.5rem;
+  }
+  .quiz-option {
+    flex: 1 1 60%;
+    margin: 1rem;
+  }
+  .arrow {
+    &.arrow-left {
+      left: 7%;
+      top: 1.8rem;
+    }
+    &.arrow-right {
+      right: 7%;
+      top: 1.8rem;
+    }
+  }
+}
+
+@include for-tablet-portrait-only {
+  .card-content {
+    padding: 1rem;
+  }
+  .arrow {
+    &.arrow-left {
+      left: 2%;
+      top: 58%;
+    }
+    &.arrow-right {
+      right: 2%;
+      top: 58%;
+    }
+  }
+}
+@include for-tablet-landscape-only{
+  .card-content {
+    padding: 1rem;
+  }
+  .arrow {
+    &.arrow-left {
+      left: 2%;
+      top: 58%;
+    }
+    &.arrow-right {
+      right: 2%;
+      top: 58%;
+    }
+  }
 }
 </style>

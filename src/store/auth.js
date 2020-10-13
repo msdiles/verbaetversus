@@ -105,6 +105,7 @@ export default {
 
         commit("clearTokens")
         commit("clearUserInfo")
+        router.push("/")
       } catch (e) {
         commit("setError", e)
         throw e
@@ -131,14 +132,16 @@ export default {
         })
         if (response.status > 204) {
           dispatch("logOut")
-          router.push("/")
-          M.toast({ html: "Your Session Has Timed Out" })
+          M.toast({
+            html: "Your Session Has Timed Out",
+            classes: "orange accent-3",
+          })
         } else {
           const { user, refreshToken, accessToken } = await response.json()
           commit("setTokens", { accessToken, refreshToken })
           commit("setUserInfo", user)
           if (action && actionData) {
-           return  dispatch(action, actionData)
+            return dispatch(action, actionData)
           }
         }
       } catch (e) {

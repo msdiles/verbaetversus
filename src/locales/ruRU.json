@@ -8,41 +8,191 @@
     "ButtonSubmit": "Добавить"
   },
   "Error": {
-    "Title": "PAGE NOT FOUND",
-    "Message": "The page you requested could not founded",
-    "ButtonToHome": "Home"
+    "Title": "СТРАНИЦА НЕ НАЙДЕНА",
+    "Message": "Запрашиваемая вами страница не найдена",
+    "ButtonToHome": "На главную"
+  },
+  "Favorite": {
+    "Remove": "Убрать из избранных",
+    "Add": "Добавить в избранные"
   },
   "Home": {
     "Title": "Verba et versus",
-    "QuotesTitle": "List of quotes",
-    "QuotesMore": "Search more quotes",
-    "TestVocabulary": "Test your vocabulary",
-    "WordQuiz": "Word quiz",
-    "Inspiration": "Inspiration",
-    "AddWord": "Add word",
-    "AddQuote": "Add quote"
+    "QuotesTitle": "Список высказываний и цитат",
+    "QuotesMore": "Поиск цитат или высказываний",
+    "TestVocabulary": "Проверьте свой словарный запас",
+    "WordQuiz": "Проверьте свой словарный запас",
+    "Inspiration": "Вдохновение",
+    "AddWord": "Добавить слово",
+    "AddQuote": "Добавить цитату"
   },
   "Inspiration": {
-    "Title": "Inspiration",
-    "Message": "Try to write something with using proposed words:",
-    "ButtonSubmit": " Add quote"
+    "Title": "Вдохновение",
+    "Message": "Попытайтесь написать что-то, используя предложенные слова:",
+    "ButtonSubmit": " Добавить"
   },
   "List": {
-    "Title": "  List of Quotes",
-    "QuoteLabel": "Quote:",
-    "QuotePlaceholder": "Enter quote or part of quote",
-    "SearchButton":"Search",
-    "ShowOptions": "Show other options",
-    "RelatedWordLabel": "Related word",
-    "TagLabel": "Tag",
-    "AuthorLabel": "Author",
-    "NumberLabel": "Number of quotes",
-    "ByUserCheckbox": "Create by user",
-    "FavoriteCheckbox": "Favorite",
-    "EnterWordMessage": "Enter some word, tag, author or part of quote",
-    "NotFoundMessage": "Quotes not found"
+    "Title": "Список высказываний и цитат",
+    "EnterWordMessage": "Введите слово, тэг, автора или часть цитаты",
+    "NotFoundMessage": "Подходящих результатов не найдено"
+  },
+  "Login": {
+    "Title": "Авторизоваться",
+    "EmailLabel": "Введите email",
+    "ErrorMessageEmail": "Введите email",
+    "PasswordLabel": "Пароль ",
+    "ErrorMessagePassword": "Введите пароль",
+    "ButtonSubmit": "Авторизоваться",
+    "DonTHaveAccount": "У вас нет аккаунта",
+    "LinkText": "Зарегистрироваться",
+    "ForgotPassword": "Забыли пароль?"
+  },
+  "Navbar": {
+    "Profile": "Профиль",
+    "Logout": "Выйти",
+    "Login": "Войти",
+    "Register": "Регитсрация"
+  },
+  "NavbarSearch": {
+    "NoResultFound.": "Подходящих результатов не найдено."
+  },
+  "Quote": {
+    "QuoteNotFound": "Цитата не найдена",
+    "LinkToHome": "На главную",
+    "AddQuote": "Добавить цитату",
+    "QuoteDeleted": "Цитата удалена!",
+    "ChangeButton": "Изменить цитату",
+    "DeleteButton": "Удалить цитату",
+    "UpdateButton": "Обновть цитату"
+  },
+  "SearchQuotes": {
+    "QuoteLabel": "Цитата:",
+    "QuotePlaceholder": "Введите цитату или часть цитаты",
+    "SearchButton": "Поиск",
+    "ShowOptions": "Показать другие опции",
+    "RelatedWordLabel": "Связанное слово",
+    "TagLabel": "Тэг",
+    "AuthorLabel": "Автор",
+    "NumberLabel": "Список цитат",
+    "ByUserCheckbox": "Созданно пользователем",
+    "FavoriteCheckbox": "Избранное",
+    "SelectMessage": "Выбирите язык",
+    "SelectLabel": "Язык"
+  },
+  "SignUp": {
+    "Title": "Зарегистрироваться",
+    "LoginLabel": "Имя пользователя",
+    "ErrorLogin": "Введите имя пользователя",
+    "ErrorLoginLengthStart": "Длина именя пользователя не должна быть меньше",
+    "ErrorLoginLengthEnd": " символов",
+    "ErrorLoginLengthMaxStart": "Длина имени пользователя не может быть длинее",
+    "ErrorLoginLengthMaxEnd": " символов",
+    "EmailLabel": "Email",
+    "ErrorEmail": "Введите email",
+    "ErrorEmailInvalid": "Неверный формат email",
+    "ErrorEmailLengthMaxStart": "Длина email не может быть длинее",
+    "ErrorEmailLengthMaxEnd": " символов",
+    "ErrorEmailExists": "Пользователь с данным email уже существует",
+    "PasswordLabel": "Пароль",
+    "ErrorPassword": "Введите пароль",
+    "ErrorPasswordLengthStart": "Длина пароля не должна быть меньше",
+    "ErrorPasswordLengthEnd": " символов",
+    "ErrorPasswordUppercase": "Пароль должен содеражть как минимум один символ верхнего регистра",
+    "ErrorPasswordLowercase": "Пароль должен содеражть как минимум один символ нижнего регистра",
+    "ErrorPasswordDigit": "Пароль должен содеражть как минимум одну цифру",
+    "ErrorPasswordSpecial": "Пароль не должен содержать специальных символов",
+    "ErrorPasswordLengthMaxStart": "Длина пароля не может быть длинее",
+    "ErrorPasswordLengthMaxEnd": " символов",
+    "PasswordRepeatLabel": "Подтвердите пароль",
+    "ErrorPasswordRepeat": "Введите пароль",
+    "ErrorPasswordRepeatMatch": "Пароли не совпадают",
+    "ButtonSubmit": "Зарегистрироваться",
+    "HaveAccount": "Уже есть аккаунт?",
+    "HaveAccountLink": "Авторизоваться",
+    "ModalTitle": "Регистрация успешно завершена",
+    "HomeLink": "На главную",
+    "LoginLink": "Авторизоваться"
   },
   "Profile": {
-    "ProfileTitle": "Profile"
+    "ProfileTitle": "Профиль"
+  },
+  "Quiz": {
+    "Title": "Викторина",
+    "Message": "Проверьте свой словарный запас",
+    "Button": "Начать"
+  },
+  "QuoteCard": {
+    "WordsList": "Слова:",
+    "TagsList": "Тэги:"
+  },
+  "QuoteCollapsible": {
+    "TagsList": "Тэги:",
+    "WordsList": "Слова:",
+    "QuoteLink": "К цитате"
+  },
+  "QuizContent": {
+    "Question": "Значение слова "
+  },
+  "QuizContentResult": {
+    "Title": "Результат:",
+    "CorrectAnswers": " правильных ответов из",
+    "ToWord": "К слову"
+  },
+  "QuoteForm": {
+    "TextareaLabel": "Введите цитату или высказывание",
+    "AuthorLabel": "Автор",
+    "WordsPlaceholder": "Введите связанные слова",
+    "TagsPlaceholder": "Введите тэги"
+  },
+  "ResetPassword": {
+    "Message": "Восстановить пароль",
+    "PasswordLabel": "Пароль",
+    "ErrorPassword": "Введите пароль",
+    "ErrorPasswordLengthStart": "Длина пароля не должна быть меньше",
+    "ErrorPasswordLengthEnd": " символов",
+    "ErrorPasswordUppercase": "Пароль должен содеражть как минимум один символ верхнего регистра",
+    "ErrorPasswordLowercase": "Пароль должен содеражть как минимум один символ нижнего регистра",
+    "ErrorPasswordDigit": "Пароль должен содеражть как минимум одну цифру",
+    "ErrorPasswordSpecial": "Пароль не должен содержать специальных символов",
+    "ErrorPasswordLengthMaxStart": "Длина пароля не может быть длинее",
+    "ErrorPasswordLengthMaxEnd": " символов",
+    "PasswordRepeatLabel": "Подтвердите пароль",
+    "ErrorPasswordRepeat": "Введите пароль",
+    "ErrorPasswordRepeatMatch": "Пароли не совпадают",
+    "ButtonSubmit": "Восстановить пароль",
+    "ModalMessage": "Ваш пароль был успещно изменён",
+    "HomeLink": "На главную"
+  },
+  "ResetSendLink": {
+    "Title": "Забыли ваш пароль?",
+    "Message": "Введите email.",
+    "EmailLabel": "Email",
+    "EmailError": "Введите email",
+    "ButtonSubmit": "Восстановить пароль",
+    "ModalTitle": "Провретье ваш email",
+    "ModalMessage": "На указанный email была выслана инструкция по восстановлению пароля",
+    "HomeLink": "На главную"
+  },
+  "UserInfoCard": {
+    "AddedBy": "Добавлена "
+  },
+  "Word": {
+    "WordNotFound": "Слово не найдено",
+    "LinkToHome": "На главную",
+    "AddWord": "Добавить слово",
+    "ChangeButton": "Изменить",
+    "DeleteButton": "Удалить",
+    "UpdateButton": "Обновить"
+  },
+  "WordCard": {
+    "Word": "Слово"
+  },
+  "WordForm": {
+    "WordLabel": "Введите слово",
+    "WordError":"Введите слово",
+    "TextareaLabel": "Введите значение слова",
+    "TextareaError":"Введите значение",
+    "AddButton": "Добавить значение",
+    "ClearButton": "Очистить поля"
   }
 }

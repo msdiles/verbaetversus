@@ -9,7 +9,7 @@
       <div class="grid-element">
         <div class="card-panel home-card-full">
           <div class="center collection">
-            <a class="collection-item ">{{"Home/QuotesTitle"|localize}}</a>
+            <a class="collection-item ">{{ "Home/QuotesTitle" | localize }}</a>
             <TextLoading v-if="loading" :propLinesNumber="20" />
             <router-link
               :to="`/quote/${quote.url}`"
@@ -19,9 +19,9 @@
               >{{ quote.quote }}</router-link
             >
 
-            <router-link to="/quotes/list" tag="a" class=" collection-item "
-              >{{"Home/QuotesMore"|localize}}</router-link
-            >
+            <router-link to="/quotes/list" tag="a" class=" collection-item ">{{
+              "Home/QuotesMore" | localize
+            }}</router-link>
           </div>
         </div>
       </div>
@@ -31,16 +31,17 @@
           tag="div"
           class="card-panel home-card-third"
         >
-          <div class="center"><p>{{"Home/TestVocabulary"|localize}}</p></div></router-link
+          <div class="center">
+            <p>{{ "Home/TestVocabulary" | localize }}</p>
+          </div></router-link
         >
       </div>
       <div class="grid-element">
-        <router-link
-          to="/quiz"
-          tag="div"
-          class="card-panel home-card-third"
-        >
-          <div class="center"><p>{{"Home/WordQuiz"|localize}}</p></div></router-link
+        <router-link to="/quiz" tag="div" class="card-panel home-card-third">
+          <div class="center">
+            <p>{{ "Home/WordQuiz" | localize }}</p>
+            <i class="material-icons"> grade </i>
+          </div></router-link
         >
       </div>
       <div class="grid-element ">
@@ -50,7 +51,7 @@
           class="card-panel home-card-third"
         >
           <div class="center">
-            <p>{{"Home/Inspiration"|localize}}</p>
+            <p>{{ "Home/Inspiration" | localize }}</p>
             <i class="material-icons"> create </i>
           </div>
         </router-link>
@@ -62,7 +63,7 @@
           class="card-panel home-card-third"
         >
           <div class="center">
-            <p>{{"Home/AddWord"|localize}}</p>
+            <p>{{ "Home/AddWord" | localize }}</p>
             <i class="material-icons">add</i>
           </div></router-link
         >
@@ -74,7 +75,7 @@
           class="card-panel  home-card-third"
         >
           <div class="center">
-            <p>{{"Home/AddQuote"|localize}}</p>
+            <p>{{ "Home/AddQuote" | localize }}</p>
             <i class="material-icons">format_quote</i>
           </div></router-link
         >

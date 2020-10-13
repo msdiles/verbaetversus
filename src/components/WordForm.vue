@@ -8,10 +8,10 @@
           v-model="word"
           :class="{ invalid: $v.word.$error }"
         />
-        <label for="word">Enter word</label>
-        <small class="helper-text invalid" v-if="$v.word.$error"
-          >Enter word</small
-        >
+        <label for="word">{{ "WordForm/WordLabel" | localize }}</label>
+        <small class="helper-text invalid" v-if="$v.word.$error">{{
+          "WordForm/WordError" | localize
+        }}</small>
       </div>
     </div>
 
@@ -24,10 +24,10 @@
           :class="{ invalid: $v.meaning.$error }"
           v-model="meaning"
         ></textarea>
-        <label for="meaning">Add meaning of the world</label>
-        <small class="helper-text invalid" v-if="$v.meaning.$error"
-          >Enter a meaning</small
-        >
+        <label for="meaning">{{ "WordForm/TextareaLabel" | localize }}</label>
+        <small class="helper-text invalid" v-if="$v.meaning.$error">{{
+          "WordForm/TextareaError" | localize
+        }}</small>
       </div>
     </div>
     <div class="chips chips-placeholder" ref="chips"></div>
@@ -40,7 +40,7 @@
         :class="{ disabled: !word || !meaning }"
       >
         <i class="material-icons left">add</i>
-        Add meaning
+        {{ "WordForm/AddButton" | localize }}
       </button>
       <button
         type="button"
@@ -49,7 +49,7 @@
         :class="{ disabled: !wordCard.meanings.length }"
       >
         <i class="material-icons left">clear</i>
-        Clear Fields
+        {{ "WordForm/ClearButton" | localize }}
       </button>
     </div>
   </form>
@@ -100,7 +100,7 @@ export default {
           let arg = {}
           return (arg[i] = tag.tag)
         }),
-        _id:uuidv4(),
+        _id: uuidv4(),
         meaning: this.meaning,
       })
       this.meaning = ""

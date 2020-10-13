@@ -20,22 +20,32 @@
             >
           </a>
 
-          <ul
-            v-if="auth.isUserLoggedIn"
-            id="dropdown"
-            class="dropdown-content"
-          >
+          <ul v-if="auth.isUserLoggedIn" id="dropdown" class="dropdown-content">
             <li v-if="auth.isUserLoggedIn" class="divider"></li>
-            <li><router-link to="/profile">Profile</router-link></li>
+            <li>
+              <router-link to="/profile">
+                {{ "Navbar/Profile" | localize }}</router-link
+              >
+            </li>
             <li class="divider"></li>
-            <li><a href="#" @click.prevent="logout">Logout</a></li>
+            <li>
+              <a href="#" @click.prevent="logout">{{
+                "Navbar/Logout" | localize
+              }}</a>
+            </li>
           </ul>
 
           <ul v-else id="dropdown" class="dropdown-content">
-            <li><router-link to="/login">Login</router-link></li>
+            <li>
+              <router-link to="/login">{{
+                "Navbar/Login" | localize
+              }}</router-link>
+            </li>
             <li class="divider"></li>
             <li>
-              <router-link to="/register">Register</router-link>
+              <router-link to="/register">{{
+                "Navbar/Register" | localize
+              }}</router-link>
             </li>
           </ul>
         </li>
@@ -64,8 +74,7 @@ export default {
     async logout() {
       try {
         await this.$store.dispatch("logOut")
-        this.$message("You Have Been Successfully Logged Out")
-        this.$router.push("/")
+        this.$messageGreen("You Have Been Successfully Logged Out")
       } catch (e) {}
     },
   },
@@ -98,13 +107,16 @@ export default {
       content: "";
       position: absolute;
       top: -10px;
-      right: 15%;
+      right: 30%;
       width: 0;
       height: 0;
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       border-bottom: 10px solid white;
     }
+  }
+  .dropdown-content{
+    width:auto !important;
   }
   @include for-phone-only {
     left: 0;

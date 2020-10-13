@@ -13,33 +13,37 @@
     />
 
     <div v-else-if="!changeMode" class="card" style="height:60vh">
-      <h4 class="center">Quote not found</h4>
+      <h4 class="center">{{ "Quote/QuoteNotFound" | localize }}</h4>
       <div class="buttons another" style="margin-top:4rem">
         <router-link
           to="/"
           class="btn green waves-effect waves-light btn-add center"
-          >To Home<i class="material-icons left">arrow_back </i></router-link
+          >{{ "Quote/LinkToHome" | localize
+          }}<i class="material-icons left">arrow_back </i></router-link
         >
         <router-link
           to="/quotes/add"
           class="btn green waves-effect waves-light btn-add center"
-          ><i class="material-icons left">add</i>Add quote</router-link
+          ><i class="material-icons left">add</i
+          >{{ "Quote/AddQuote" | localize }}</router-link
         >
       </div>
     </div>
 
     <div v-else-if="isDeleted" class="card" style="height:60vh">
-      <h4 class="center">Quote deleted!</h4>
+      <h4 class="center">{{ "Quote/QuoteDeleted" | localize }}</h4>
       <div class="buttons another" style="margin-top:4rem">
         <router-link
           to="/"
           class="btn green waves-effect waves-light btn-add center"
-          >To Home<i class="material-icons left">arrow_back </i></router-link
+          >{{ "Quote/LinkToHome" | localize
+          }}<i class="material-icons left">arrow_back </i></router-link
         >
         <router-link
           to="/quotes/add"
           class="btn green waves-effect waves-light btn-add center"
-          ><i class="material-icons left">add</i>Add quote</router-link
+          ><i class="material-icons left">add</i
+          >{{ "Quote/AddQuote" | localize }}</router-link
         >
       </div>
     </div>
@@ -66,7 +70,7 @@
         v-show="!changeMode && quoteCard"
         @click="changeMode = true"
       >
-        Change quote
+        {{ "Quote/ChangeButton" | localize }}
       </button>
       <button
         type="button"
@@ -75,7 +79,7 @@
         @click="deleteHandler"
         :disabled="fetchLoading"
       >
-        Delete quote
+        {{ "Quote/DeleteButton" | localize }}
       </button>
       <button
         type="submit"
@@ -85,7 +89,7 @@
         @click="updateHandler(false)"
         :disabled="!quoteCard.quote || !quoteCard.author || fetchLoading"
       >
-        Update quote
+        {{ "Quote/UpdateButton" | localize }}
       </button>
     </div>
   </div>
@@ -116,13 +120,13 @@ export default {
       const quote = this.$route.params.quote
       if (!quote) {
         this.$router.push("/")
-        this.$message("Invalid route")
+        this.$messageRed("Invalid route")
       }
       const response = await this.$store.dispatch("findQuote", quote)
       if (!!response.success) {
         this.quoteCard = response.result
       } else {
-        this.$message("Quote not found")
+        this.$messageRed("Quote not found")
       }
     } catch (e) {
     } finally {
@@ -154,11 +158,10 @@ export default {
         if (result) {
           this.quoteCard = result.target
           this.changeMode = false
-          if (!fromToggleFavorite) this.$message("Quote updated")
+          if (!fromToggleFavorite) this.$Orange("Quote updated")
         }
       } catch (e) {
       } finally {
-
         this.fetchLoading = false
       }
     },
@@ -168,7 +171,7 @@ export default {
         const data = { id: this.quoteCard._id }
         const result = await this.$store.dispatch("deleteQuote", data)
         if (result) {
-          this.$message("Quote deleted")
+          this.$messageOrange("Quote deleted")
           this.isDeleted = true
         }
       } catch (e) {
@@ -183,17 +186,16 @@ export default {
             (fav) => fav !== this.auth.user.name
           )
           await this.updateHandler(true)
-          this.$message("Quote removed from favorite")
+          this.$messageOrange("Quote removed from favorite")
         } else {
           this.quoteCard.favorite = [
             ...this.quoteCard.favorite,
             this.auth.user.name,
           ]
           await this.updateHandler(true)
-          this.$message("Quote added to favorite")
+          this.$messageGreen("Quote added to favorite")
         }
-      } catch (e) {
-      }
+      } catch (e) {}
     },
   },
   beforeDestroy() {

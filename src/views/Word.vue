@@ -18,17 +18,19 @@
       />
 
       <div v-if="isFounded" class="card" style="height:60vh">
-        <h4 class="center">Word not found</h4>
+        <h4 class="center">{{ "SignUp/WordNotFound" | localize }}</h4>
         <div class="buttons another" style="margin-top:4rem">
           <router-link
             to="/"
             class="btn green waves-effect waves-light btn-add center"
-            >To Home<i class="material-icons left">arrow_back </i></router-link
+            >{{ "SignUp/LinkToHome" | localize
+            }}<i class="material-icons left">arrow_back </i></router-link
           >
           <router-link
             to="/words/add"
             class="btn green waves-effect waves-light btn-add center"
-            ><i class="material-icons left">add</i>Add word</router-link
+            ><i class="material-icons left">add</i
+            >{{ "SignUp/AddWord" | localize }}</router-link
           >
         </div>
       </div>
@@ -50,7 +52,7 @@
         class="btn orange  waves-effect waves-light  "
         @click="changeHandler"
       >
-        Change
+        {{ "SignUp/ChangeButton" | localize }}
       </button>
       <button
         type="button"
@@ -58,7 +60,7 @@
         class="btn red  waves-effect waves-light  "
         @click="deleteHandler"
       >
-        Delete
+        {{ "SignUp/DeleteButton" | localize }}
       </button>
       <button
         class="btn green  waves-effect waves-light  "
@@ -66,7 +68,7 @@
         @click="updateHandler(false)"
         v-show="changeMod"
       >
-        Update
+        {{ "SignUp/UpdateButton" | localize }}
         <i class="material-icons right"></i>
       </button>
     </div>
@@ -106,7 +108,7 @@ export default {
         const word = this.$route.params.word
         if (!word) {
           this.$router.push("/")
-          this.$message("Invalid route")
+          this.$messageRed("Invalid route")
         }
         const response = await this.$store.dispatch("findWord", word)
         if (!!response.success) {
@@ -127,7 +129,7 @@ export default {
         const data = { id: this.wordCard._id }
         const result = await this.$store.dispatch("deleteWord", data)
         if (!!result) {
-          this.$message("Word deleted")
+          this.$messageOrange("Word deleted")
           this.$router.push("/")
         }
       } catch (e) {}
@@ -150,11 +152,11 @@ export default {
         }
         const result = await this.$store.dispatch("updateWord", data)
         if (!!result.success) {
-          if (!fromToggleFavorite) this.$message("Word updated")
+          if (!fromToggleFavorite) this.$messageOrange("Word updated")
           this.$router.push(`/word/${this.wordCard.word}`).catch((e) => e)
           this.changeMod = false
         } else if (!result.success) {
-          this.$message("Word already exists")
+          this.$messageOrange("Word already exists")
         }
       } catch (e) {}
     },
@@ -165,14 +167,14 @@ export default {
             (fav) => fav !== this.auth.user.name
           )
           await this.updateHandler(true)
-          this.$message("Word removed from favorite")
+          this.$messageOrange("Word removed from favorite")
         } else {
           this.wordCard.favorite = [
             ...this.wordCard.favorite,
             this.auth.user.name,
           ]
           await this.updateHandler(true)
-          this.$message("Word added to favorite")
+          this.$messageGreen("Word added to favorite")
         }
       } catch (e) {}
     },

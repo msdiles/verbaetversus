@@ -2,9 +2,10 @@
   <div class="card quiz-result">
     <div class="card-content" v-if="propChosenWords">
       <div class="card-title center">
-        <h4>Result:</h4>
+        <h4>{{ "QuizContentResult/Title" | localize }}</h4>
         <p>
-          <strong>{{ correctAnswers }}</strong> correct answers out of
+          <strong>{{ correctAnswers }}</strong
+          >{{ "QuizContentResult/CorrectAnswers" | localize }}
           <strong>{{ propChosenWords.length }}</strong>
         </p>
       </div>
@@ -18,9 +19,9 @@
             </td>
             <td v-else><i class="material-icons incorrect">close</i></td>
             <td>
-              <router-link :to="`/word/${word.word.word}`" target="_blank"
-                >To word</router-link
-              >
+              <router-link :to="`/word/${word.word.word}`" target="_blank">{{
+                "QuizContentResult/ToWord" | localize
+              }}</router-link>
             </td>
             <td v-if="auth.user" class="add-to-favorite">
               <i
@@ -39,8 +40,8 @@
                 @click="favoriteHandler(word)"
                 v-tooltip="
                   tooltipSwitch(word)
-                    ? 'Remove from favorite'
-                    : 'Add to favorite'
+                    ? `${$options.filters.localize('Favorite/Remove')}`
+                    : `${$options.filters.localize('Favorite/Add')}`
                 "
                 >favorite</i
               >
@@ -92,11 +93,11 @@ export default {
             (fav) => fav !== this.auth.user.name
           )
           await this.updateHandler(wordCard)
-          this.$message("Word removed from favorite")
+          this.$messageOrange("Word removed from favorite")
         } else {
           wordCard.favorite = [...wordCard.favorite, this.auth.user.name]
           await this.updateHandler(wordCard)
-          this.$message("Word added to favorite")
+          this.$messageGreen("Word added to favorite")
         }
       } catch (e) {}
     },

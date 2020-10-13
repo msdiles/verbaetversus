@@ -2,7 +2,7 @@
   <div>
     <div class="col s12 m4 offset-m6 added-info">
       <p>
-        Added by
+        {{ "UserInfoCard/AddedBy" | localize }}
         <router-link :to="`${propCard.username}/profile`">{{
           propCard.username
         }}</router-link
@@ -22,8 +22,8 @@
         @click="favoriteHandler"
         v-tooltip="
           this.propCard.favorite.indexOf(this.propUser.name) > -1
-            ? 'Remove from favorite'
-            : 'Add to favorite'
+            ? `${$options.filters.localize('Favorite/Remove')}`
+            : `${$options.filters.localize('Favorite/Add')}`
         "
         >favorite
       </i>
@@ -46,7 +46,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .added-info {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -69,5 +68,4 @@ export default {
     cursor: pointer;
   }
 }
-
 </style>
