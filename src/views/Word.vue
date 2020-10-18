@@ -18,19 +18,19 @@
       />
 
       <div v-if="isFounded" class="card" style="height:60vh">
-        <h4 class="center">{{ "SignUp/WordNotFound" | localize }}</h4>
+        <h4 class="center">{{ "Word/WordNotFound" | localize }}</h4>
         <div class="buttons another" style="margin-top:4rem">
           <router-link
             to="/"
             class="btn green waves-effect waves-light btn-add center"
-            >{{ "SignUp/LinkToHome" | localize
+            >{{ "Word/LinkToHome" | localize
             }}<i class="material-icons left">arrow_back </i></router-link
           >
           <router-link
             to="/words/add"
             class="btn green waves-effect waves-light btn-add center"
             ><i class="material-icons left">add</i
-            >{{ "SignUp/AddWord" | localize }}</router-link
+            >{{ "Word/AddWord" | localize }}</router-link
           >
         </div>
       </div>
@@ -52,7 +52,7 @@
         class="btn orange  waves-effect waves-light  "
         @click="changeHandler"
       >
-        {{ "SignUp/ChangeButton" | localize }}
+        {{ "Word/ChangeButton" | localize }}
       </button>
       <button
         type="button"
@@ -60,7 +60,7 @@
         class="btn red  waves-effect waves-light  "
         @click="deleteHandler"
       >
-        {{ "SignUp/DeleteButton" | localize }}
+        {{ "Word/DeleteButton" | localize }}
       </button>
       <button
         class="btn green  waves-effect waves-light  "
@@ -68,7 +68,7 @@
         @click="updateHandler(false)"
         v-show="changeMod"
       >
-        {{ "SignUp/UpdateButton" | localize }}
+        {{ "Word/UpdateButton" | localize }}
         <i class="material-icons right"></i>
       </button>
     </div>
@@ -104,6 +104,7 @@ export default {
   methods: {
     async findWord() {
       try {
+        this.wordCard =null
         this.loading = true
         const word = this.$route.params.word
         if (!word) {

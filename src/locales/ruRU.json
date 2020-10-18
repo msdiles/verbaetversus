@@ -20,7 +20,7 @@
     "Title": "Verba et versus",
     "QuotesTitle": "Список высказываний и цитат",
     "QuotesMore": "Поиск цитат или высказываний",
-    "TestVocabulary": "Проверьте свой словарный запас",
+    "RandomWord": "Случайное слово",
     "WordQuiz": "Проверьте свой словарный запас",
     "Inspiration": "Вдохновение",
     "AddWord": "Добавить слово",
@@ -54,7 +54,7 @@
     "Register": "Регитсрация"
   },
   "NavbarSearch": {
-    "NoResultFound.": "Подходящих результатов не найдено."
+    "NoResultFound": "Подходящих результатов не найдено."
   },
   "Quote": {
     "QuoteNotFound": "Цитата не найдена",
@@ -143,6 +143,9 @@
     "AuthorLabel": "Автор",
     "WordsPlaceholder": "Введите связанные слова",
     "TagsPlaceholder": "Введите тэги"
+  },
+  "RandomWord":{
+    "RefreshButton":"Новое слово"
   },
   "ResetPassword": {
     "Message": "Восстановить пароль",

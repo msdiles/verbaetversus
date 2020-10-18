@@ -2,7 +2,11 @@ import Fingerprint2 from "@fingerprintjs/fingerprintjs"
 
 export default (
   options = {
-    excludes: { screenResolution: true, availableScreenResolution: true,enumerateDevices:true },
+    excludes: {
+      screenResolution: true,
+      availableScreenResolution: true,
+      enumerateDevices: true,
+    },
   }
 ) => {
   return new Promise((res, rej) => {

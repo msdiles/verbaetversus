@@ -12,7 +12,7 @@
         {{
           wordCard.word
             ? wordCard.word[0].toUpperCase() + wordCard.word.slice(1)
-            :  "WordCard/Word" | localize
+            :  this.$options.filters.localize("WordCard/Word")
         }}
       </h4>
       <ul>

@@ -1,4 +1,4 @@
-<template>
+<template :key="language">
   <div>
     <div class="page-title">
       <h3>
@@ -27,12 +27,13 @@
       </div>
       <div class="grid-element">
         <router-link
-          to="/vocabulary-test"
+          to="/random/word"
           tag="div"
           class="card-panel home-card-third"
         >
           <div class="center">
-            <p>{{ "Home/TestVocabulary" | localize }}</p>
+            <p>{{ "Home/RandomWord" | localize }}</p>
+             <i class="material-icons"> casino </i>
           </div></router-link
         >
       </div>
@@ -90,17 +91,27 @@ import { mapState } from "vuex"
 export default {
   data: () => ({ loading: false }),
   computed: {
-    ...mapState(["quotes"]),
+    ...mapState(["quotes", "language"]),
   },
-  async mounted() {
-    try {
-      this.loading = true
-      const data = "?number=8"
-      await this.$store.dispatch("searchQuotes", data)
-    } catch (e) {
-    } finally {
-      this.loading = false
-    }
+  watch: {
+    language() {
+      this.fetchQuotes()
+    },
+  },
+  mounted() {
+    this.fetchQuotes()
+  },
+  methods: {
+    async fetchQuotes() {
+      try {
+        this.loading = true
+        const data = `?number=8&inspiration=false&random=true&language=${this.language}`
+        await this.$store.dispatch("searchQuotes", data)
+      } catch (e) {
+      } finally {
+        this.loading = false
+      }
+    },
   },
   components: {
     TextLoading,
@@ -199,6 +210,10 @@ export default {
 
   .grid-container .grid-element {
     padding: 0 0.5rem;
+  }
+
+  .grid-container .grid-element .card-panel{
+    padding:1rem;
   }
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="col s12 m4 offset-m6 added-info">
       <p>
         {{ "UserInfoCard/AddedBy" | localize }}
-        <router-link :to="`${propCard.username}/profile`">{{
+        <router-link :to="`/${propCard.username}/profile`">{{
           propCard.username
         }}</router-link
         >. {{ propCard.date | date("date") }}
@@ -46,6 +46,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins";
 .added-info {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -67,5 +68,9 @@ export default {
     color: red;
     cursor: pointer;
   }
+}
+
+.add-to-favorite {
+  margin-left: 50%;
 }
 </style>

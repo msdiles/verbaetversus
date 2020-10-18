@@ -175,7 +175,7 @@ textarea ~ label.active {
 }
 
 .chips .input {
-  width: 10rem !important;
+  width: 15rem !important;
 }
 
 @include for-phone-only {

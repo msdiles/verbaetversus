@@ -20,7 +20,7 @@
     "Title": "Verba et versus",
     "QuotesTitle": "List of quotes",
     "QuotesMore": "Search more quotes",
-    "TestVocabulary": "Test your vocabulary",
+    "RandomWord": "Random word",
     "WordQuiz": "Word quiz",
     "Inspiration": "Inspiration",
     "AddWord": "Add word",
@@ -54,7 +54,7 @@
     "Register": "Register"
   },
   "NavbarSearch": {
-    "NoResultFound.": "No result found."
+    "NoResultFound": "No result found."
   },
   "Quote": {
     "QuoteNotFound": "Quote not found",
@@ -143,6 +143,9 @@
     "AuthorLabel": "Author",
     "WordsPlaceholder": "Enter related words",
     "TagsPlaceholder": "Enter tags"
+  },
+  "RandomWord":{
+    "RefreshButton":"New word"
   },
   "ResetPassword": {
     "Message": "Reset password",

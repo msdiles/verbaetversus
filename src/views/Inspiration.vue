@@ -3,11 +3,11 @@
     <div>
       <div class="page-title">
         <h3>
-       {{"Inspiration/Title" |localize}}
+          {{ "Inspiration/Title" | localize }}
         </h3>
       </div>
     </div>
-    <h5 class="center"> {{"Inspiration/Message" |localize}}</h5>
+    <h5 class="center">{{ "Inspiration/Message" | localize }}</h5>
     <div class="proposed-words">
       <div v-for="word in words" :key="word.id">
         <strong>{{ word.word | upper }}</strong>
@@ -29,7 +29,7 @@
         :class="{ disabled: !quoteCard.quote || !quoteCard.author }"
         @click="submitHandler"
       >
-     {{"Inspiration/ButtonSubmit" |localize}}
+        {{ "Inspiration/ButtonSubmit" | localize }}
       </button>
     </div>
   </div>
@@ -52,12 +52,16 @@ export default {
     words: [],
   }),
   computed: {
-    ...mapState(["auth"]),
+    ...mapState(["auth", "language"]),
   },
   async mounted() {
     try {
       this.loading = true
-      const data = "?number=" + Math.floor(3 + Math.random() * 8)
+      const data =
+        "?number=" +
+        Math.floor(3 + Math.random() * 8) +
+        "&language=" +
+        this.language
       const res = await this.$store.dispatch("searchWords", data)
       if (res.success) {
         this.words = res.result.map((i) => ({ word: i.word, id: i._id }))
@@ -95,8 +99,7 @@ export default {
           this.$messageGreen("Quote added")
           this.$router.push(`/quote/${result.target.url}`)
         }
-      } catch (e) {
-      }
+      } catch (e) {}
     },
   },
   components: { QuoteForm },

@@ -18,7 +18,7 @@
         <div class="quiz-element" @click="handleClick($event, word.word)">
           <div class="quiz-question z-depth-2">
             <p>
-              {{"QuizContent/Question"|localize}}
+              {{ "QuizContent/Question" | localize }}
               <strong>{{ word.word.word | upper }}</strong>
             </p>
           </div>
@@ -60,6 +60,7 @@
 
 <script>
 import QuizContentResult from "@/components/QuizContentResult"
+import { mapState } from "vuex"
 export default {
   data: () => ({
     words: [],
@@ -69,10 +70,16 @@ export default {
     isBack: false,
     isCompleted: false,
   }),
+  computed: {
+    ...mapState(["language"]),
+  },
   async mounted() {
     try {
       this.loading = true
-      const result = await this.$store.dispatch("searchWords", "?number=20")
+      const result = await this.$store.dispatch(
+        "searchWords",
+        "?number=20&language=" + this.language
+      )
       if (result.result) {
         this.words = result.result
         this.chosenWords = this.chooseWordForQuiz()
@@ -233,7 +240,6 @@ export default {
   align-items: center;
   justify-content: center;
   text-align: justify;
-  text-align-last: center;
   cursor: pointer;
   overflow: auto;
 
@@ -258,7 +264,6 @@ export default {
   p {
     margin: auto;
     width: 100%;
-    word-break: break-all;
   }
 }
 
@@ -397,7 +402,7 @@ export default {
     }
   }
 }
-@include for-tablet-landscape-only{
+@include for-tablet-landscape-only {
   .card-content {
     padding: 1rem;
   }

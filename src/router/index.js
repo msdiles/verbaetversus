@@ -41,6 +41,12 @@ const routes = [
     component: () => import("@/views/AddWord"),
   },
   {
+    path: "/random/word",
+    name: "randomWord",
+    meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },
+    component: () => import("@/views/Random"),
+  },
+  {
     path: "/word/:word",
     name: "word",
     meta: { layout: "main", requiresAuth: false, requiresUnAuth: false },

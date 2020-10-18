@@ -57,7 +57,6 @@ export default {
         })
         if (response.status > 200) throw new Error()
         const res = await response.json()
-        if (res.success === false) return true
         return res
       } catch (e) {
         commit("setError", e)

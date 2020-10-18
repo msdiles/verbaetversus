@@ -50,4 +50,3 @@ Vue.component("LoaderPage", LoaderPage)
 //TODO add list of related quotes to word card
 //TODO add favorite quotes, words to profile
 //FIXME fix word related at quote add
-//FIXME fix width of dropdown navbar
