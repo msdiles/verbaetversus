@@ -22,6 +22,7 @@ export default {}
 
 <style lang="scss" scoped>
 .app-loader {
+  display: flex;
   width: 100%;
   justify-content: center;
   padding: 2rem;

@@ -51,7 +51,7 @@
     "Profile": "Профиль",
     "Logout": "Выйти",
     "Login": "Войти",
-    "Register": "Регитсрация"
+    "Register": "Регистрация"
   },
   "NavbarSearch": {
     "NoResultFound": "Подходящих результатов не найдено."
@@ -114,7 +114,20 @@
     "LoginLink": "Авторизоваться"
   },
   "Profile": {
-    "ProfileTitle": "Профиль"
+    "ProfileTitle": "Профиль",
+    "ProfileName":"Имя : ",
+    "Account":"Аккаунт",
+    "FavoriteWords":"Избранные слова",
+    "FavoriteQuotes":"Избранные цитаты",
+    "AddedWords":"Добавленные слова",
+    "AddedQuotes":"Добавленные цитаты",
+    "Inspiration":"Вдохновение"
+  },
+  "ProfileQuotes":{
+    "NotFoundMessage":"Цитат не найдено"
+  },
+  "ProfileWords":{
+    "NotFoundMessage":"Слов не найдено"
   },
   "Quiz": {
     "Title": "Викторина",
@@ -197,5 +210,9 @@
     "TextareaError":"Введите значение",
     "AddButton": "Добавить значение",
     "ClearButton": "Очистить поля"
+  },
+  "WordCollapsible": {
+    "TagsList":"Тэги:",
+    "QuoteLink": "К слову"
   }
 }

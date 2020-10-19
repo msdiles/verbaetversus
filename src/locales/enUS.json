@@ -114,7 +114,20 @@
     "LoginLink": "Go To Login Page"
   },
   "Profile": {
-    "ProfileTitle": "Profile"
+    "ProfileTitle": "Profile",
+    "ProfileName":"Name : ",
+    "Account":"Account",
+    "FavoriteWords":"Favorite words",
+    "FavoriteQuotes":"Favorite quotes",
+    "AddedWords":"Added words",
+    "AddedQuotes":"Added quotes",
+    "Inspiration":"Inspiration"
+  },
+  "ProfileQuotes":{
+    "NotFoundMessage":"Quotes not found"
+  },
+  "ProfileWords":{
+    "NotFoundMessage":"Words not found"
   },
   "Quiz": {
     "Title": "Quiz",
@@ -197,5 +210,9 @@
     "TextareaError":"Enter a meaning",
     "AddButton": "Add meaning",
     "ClearButton": "Clear Fields"
+  },
+  "WordCollapsible": {
+    "TagsList": "Tags:",
+    "QuoteLink": "To Word Card"
   }
 }

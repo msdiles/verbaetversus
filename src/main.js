@@ -48,5 +48,5 @@ Vue.component("LoaderPage", LoaderPage)
 //TODO FIX profile refresh
 //TODO words message when word isExist
 //TODO add list of related quotes to word card
-//TODO add favorite quotes, words to profile
 //FIXME fix word related at quote add
+//TODO add relative design at profile page
