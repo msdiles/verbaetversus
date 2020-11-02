@@ -1,10 +1,10 @@
 const path = require("path")
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { VueLoaderPlugin } = require("vue-loader")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const FriendlyErrorsPlugin = require("friendly-errors-webpack-plugin")
 const webpack = require("webpack")
+const Dotenv = require('dotenv-webpack')
 const isDev = process.env.NODE_ENV === "development"
 
 module.exports = {
@@ -74,6 +74,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new FriendlyErrorsPlugin(),
     new MiniCssExtractPlugin({ filename: "[name].css" }),
+    new Dotenv()
   ],
   mode: "development",
   devtool: "cheap-module-eval-source-map",

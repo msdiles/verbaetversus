@@ -21,8 +21,8 @@ import visibilityDirective from "@/directives/visibility.directive.js"
 import "materialize-css/dist/js/materialize.min"
 import "@/styles/main.scss"
 
-customFetch({ url: "http://localhost:3000" })
-Vue.use(fetchPlugin, { url: "http://localhost:3000" })
+customFetch({ url: process.env.DB_HOST })
+Vue.use(fetchPlugin, { url: process.env.DB_HOST })
 Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 
@@ -44,7 +44,6 @@ Vue.component("LoaderPage", LoaderPage)
     render: (h) => h(App),
   }).$mount("#app")
 })()
-//TODO ADD ANIMATION
 //TODO FIX profile refresh
 //TODO words message when word isExist
 //TODO add list of related quotes to word card
